@@ -48,18 +48,18 @@ function colors.RGBPrct2HEX(r, g, b, a)
 	return hex;
 end
 
-colors.AddonBlue = "|cFF1D92C2%s|r";
+colors.AddonBlueRGB = { R = 0.11, G = 0.57, B = 0.76 };
 
-colors.GreenRGB = { R = QuestDifficultyColors["standard"].r, G = QuestDifficultyColors["standard"].g, B = QuestDifficultyColors["standard"].b }
-colors.LightGreenRGB = { R = QuestDifficultyHighlightColors["standard"].r, G = QuestDifficultyHighlightColors["standard"].g, B = QuestDifficultyHighlightColors["standard"].b }
-colors.GreyRGB = { R = QuestDifficultyColors["trivial"].r, G = QuestDifficultyColors["trivial"].g, B = QuestDifficultyColors["trivial"].b }
-colors.LightGreyRGB = { R = QuestDifficultyHighlightColors["trivial"].r, G = QuestDifficultyHighlightColors["trivial"].g, B = QuestDifficultyHighlightColors["trivial"].b }
-colors.RedRGB = { R = QuestDifficultyColors["impossible"].r, G = QuestDifficultyColors["impossible"].g, B = QuestDifficultyColors["impossible"].b }
-colors.LightRedRGB = { R = QuestDifficultyHighlightColors["impossible"].r, G = QuestDifficultyHighlightColors["impossible"].g, B = QuestDifficultyHighlightColors["impossible"].b }
-colors.OrangeRGB = { R = QuestDifficultyColors["verydifficult"].r, G = QuestDifficultyColors["verydifficult"].g, B = QuestDifficultyColors["verydifficult"].b }
-colors.LightOrangeRGB = { R = QuestDifficultyHighlightColors["verydifficult"].r, G = QuestDifficultyHighlightColors["verydifficult"].g, B = QuestDifficultyHighlightColors["verydifficult"].b }
-colors.YellowRGB = { R = GetFontInfo(GameFontNormal).color.r, G = GetFontInfo(GameFontNormal).color.g, B = GetFontInfo(GameFontNormal).color.b }
-colors.WhiteRGB = { R = GetFontInfo(GameFontHighlight).color.r, G = GetFontInfo(GameFontHighlight).color.g, B = GetFontInfo(GameFontHighlight).color.b }
+colors.GreenRGB = { R = QuestDifficultyColors["standard"].r, G = QuestDifficultyColors["standard"].g, B = QuestDifficultyColors["standard"].b };
+colors.LightGreenRGB = { R = QuestDifficultyHighlightColors["standard"].r, G = QuestDifficultyHighlightColors["standard"].g, B = QuestDifficultyHighlightColors["standard"].b };
+colors.GreyRGB = { R = QuestDifficultyColors["trivial"].r, G = QuestDifficultyColors["trivial"].g, B = QuestDifficultyColors["trivial"].b };
+colors.LightGreyRGB = { R = QuestDifficultyHighlightColors["trivial"].r, G = QuestDifficultyHighlightColors["trivial"].g, B = QuestDifficultyHighlightColors["trivial"].b };
+colors.RedRGB = { R = QuestDifficultyColors["impossible"].r, G = QuestDifficultyColors["impossible"].g, B = QuestDifficultyColors["impossible"].b };
+colors.LightRedRGB = { R = QuestDifficultyHighlightColors["impossible"].r, G = QuestDifficultyHighlightColors["impossible"].g, B = QuestDifficultyHighlightColors["impossible"].b };
+colors.OrangeRGB = { R = QuestDifficultyColors["verydifficult"].r, G = QuestDifficultyColors["verydifficult"].g, B = QuestDifficultyColors["verydifficult"].b };
+colors.LightOrangeRGB = { R = QuestDifficultyHighlightColors["verydifficult"].r, G = QuestDifficultyHighlightColors["verydifficult"].g, B = QuestDifficultyHighlightColors["verydifficult"].b };
+colors.YellowRGB = { R = GetFontInfo(GameFontNormal).color.r, G = GetFontInfo(GameFontNormal).color.g, B = GetFontInfo(GameFontNormal).color.b };
+colors.WhiteRGB = { R = GetFontInfo(GameFontHighlight).color.r, G = GetFontInfo(GameFontHighlight).color.g, B = GetFontInfo(GameFontHighlight).color.b };
 
 -- Adding functions dynamically to string
 local tmpColors = {};
