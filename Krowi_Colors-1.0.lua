@@ -61,6 +61,12 @@ colors.LightOrangeRGB = { R = QuestDifficultyHighlightColors["verydifficult"].r,
 colors.YellowRGB = { R = GetFontInfo(GameFontNormal).color.r, G = GetFontInfo(GameFontNormal).color.g, B = GetFontInfo(GameFontNormal).color.b };
 colors.WhiteRGB = { R = GetFontInfo(GameFontHighlight).color.r, G = GetFontInfo(GameFontHighlight).color.g, B = GetFontInfo(GameFontHighlight).color.b };
 
+colors.PoorRGB = { R = ITEM_QUALITY_COLORS[0].r, G = ITEM_QUALITY_COLORS[0].g, B = ITEM_QUALITY_COLORS[0].b };
+colors.CommonRGB = { R = ITEM_QUALITY_COLORS[1].r, G = ITEM_QUALITY_COLORS[1].g, B = ITEM_QUALITY_COLORS[1].b };
+colors.UncommonRGB = { R = ITEM_QUALITY_COLORS[2].r, G = ITEM_QUALITY_COLORS[2].g, B = ITEM_QUALITY_COLORS[2].b };
+colors.RareRGB = { R = ITEM_QUALITY_COLORS[3].r, G = ITEM_QUALITY_COLORS[3].g, B = ITEM_QUALITY_COLORS[3].b };
+colors.EpicRGB = { R = ITEM_QUALITY_COLORS[4].r, G = ITEM_QUALITY_COLORS[4].g, B = ITEM_QUALITY_COLORS[4].b };
+
 -- Adding functions dynamically to string
 local tmpColors = {};
 for colorName, color in next, colors do
