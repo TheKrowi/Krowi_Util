@@ -93,6 +93,15 @@ function lib.Enum(table)
     return table;
 end
 
+function lib.Enum2(table)
+    local tbl = {};
+    for i, element in next, table do
+        local tmp = element;
+        tbl[tmp] = i;
+    end
+    return tbl;
+end
+
 function lib.SplitString(sre, sep)
     sep = sep or " ";
     local fields = {};
