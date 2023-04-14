@@ -43,13 +43,13 @@ function lib.ReplaceVars(str, vars)
         vars = str;
         str = vars[1];
     end
-    return string.gsub(str, "({([^}]+)})", function(whole, i)
+    return (string.gsub(str, "({([^}]+)})", function(whole, i)
         if type(vars) == "table" then
             return vars[i] or whole;
         else
             return vars;
         end
-    end);
+    end));
 end
 
 function lib.DeepCopyTable(src, dest)
