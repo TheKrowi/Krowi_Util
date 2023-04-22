@@ -110,3 +110,18 @@ function lib.SplitString(sre, sep)
     end
     return fields;
 end
+
+lib.DelayObjects = {};
+function lib.DelayFunction(delayObjectName, delayTime, func, ...)
+    if lib.DelayObjects[delayObjectName] ~= nil then
+        -- print("skipping")
+        return;
+    end
+    -- print("start timer")
+    local args = {...};
+    lib.DelayObjects[delayObjectName] = C_Timer.NewTimer(delayTime, function()
+        -- print("run func")
+        func(unpack(args));
+        lib.DelayObjects[delayObjectName] = nil;
+    end);
+end
