@@ -18,7 +18,7 @@
 		the copyright holders.
 ]]
 
-local lib = LibStub:NewLibrary("Krowi_Util-1.0", 1);
+local lib = LibStub:NewLibrary("Krowi_Util-1.0", 2);
 
 if not lib then
 	return;
@@ -121,4 +121,14 @@ function lib.DelayFunction(delayObjectName, delayTime, func, ...)
         func(unpack(args));
         lib.DelayObjects[delayObjectName] = nil;
     end);
+end
+
+function lib.TableRemoveByValue(table, value)
+    for key, _value in pairs(table) do
+        if _value == value then
+            tremove(table, key);
+            return true;
+        end
+    end
+    return false;
 end
