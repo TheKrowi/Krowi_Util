@@ -103,13 +103,12 @@ function lib.Enum2(table)
     return tbl;
 end
 
-function lib.SplitString(sre, sep)
-    sep = sep or " ";
-    local fields = {};
-    for s in string.gmatch(sre, "([^"..sep.."]+)") do
-        tinsert(fields, s);
+function lib.StringSplitTable(delimiter, str)
+    local chunks = {};
+    for s in string.gmatch(str, "([^" .. delimiter .. "]+)") do
+        tinsert(chunks, s);
     end
-    return fields;
+    return chunks;
 end
 
 lib.DelayObjects = {};
