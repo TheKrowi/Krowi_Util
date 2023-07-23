@@ -19,20 +19,30 @@
 ]]
 
 local lib = LibStub("Krowi_Util-1.0");
-lib.MetaData = {};
-local metaData = lib.MetaData;
+lib.Metadata = {};
+local metadata = lib.Metadata;
 
-function metaData.GetMetaData(addonName)
+function metadata.GetMetaData(addonName)
+    local title = GetAddOnMetadata(addonName, "Title");
+    local build = GetBuildInfo();
+    local version = GetAddOnMetadata(addonName, "Version");
+    local author = GetAddOnMetadata(addonName, "Author");
+    local discordInviteLink = GetAddOnMetadata(addonName, "X-Discord-Invite-Link");
+    local discordServerName = GetAddOnMetadata(addonName, "X-Discord-Server-Name");
+    local curseForge = GetAddOnMetadata(addonName, "X-CurseForge");
+    local wago = GetAddOnMetadata(addonName, "X-Wago");
+    local woWInterface = GetAddOnMetadata(addonName, "X-WoWInterface");
+
     return {
-        Title = GetAddOnMetadata(addonName, "Title");
-        Build = GetBuildInfo();
-        Version = GetAddOnMetadata(addonName, "Version");
-        BuildVersion = metaData.Build .. "." .. metaData.Version;
-        Author = GetAddOnMetadata(addonName, "Author");
-        DiscordInviteLink = GetAddOnMetadata(addonName, "X-Discord-Invite-Link");
-        DiscordServerName = GetAddOnMetadata(addonName, "X-Discord-Server-Name");
-        CurseForge = GetAddOnMetadata(addonName, "X-CurseForge");
-        Wago = GetAddOnMetadata(addonName, "X-Wago");
-        WoWInterface = GetAddOnMetadata(addonName, "X-WoWInterface");
+        Title = title,
+        Build = build,
+        Version = version,
+        BuildVersion = build .. "." .. version,
+        Author = author,
+        DiscordInviteLink = discordInviteLink,
+        DiscordServerName = discordServerName,
+        CurseForge = curseForge,
+        Wago = wago,
+        WoWInterface = woWInterface
     };
 end
