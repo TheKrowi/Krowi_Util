@@ -1,6 +1,6 @@
-<!-- 
+--[[
 	Krowi's Util License
-		Copyright ©2020 The contents of this library, excluding third-party resources, are
+		Copyright ©2023 The contents of this library, excluding third-party resources, are
 		copyrighted to their authors with all rights reserved.
 
 		This library is free to use and the authors hereby grants you the following rights:
@@ -16,11 +16,15 @@
 
 		All rights not explicitly addressed in this license are reserved by
 		the copyright holders.
- -->
+]]
 
-<Ui>
-	<Script file="Krowi_Util-1.0.lua"/>
-	<Script file="Krowi_Colors-1.0.lua"/>
-	<Script file="Krowi_Metadata-1.0.lua"/>
-	<Script file="Krowi_InjectOptions-1.0.lua"/>
-</Ui>
+local lib = LibStub("Krowi_Util-1.0");
+lib.InjectOptions = {};
+local injectOptions = lib.InjectOptions;
+
+injectOptions.__index = injectOptions;
+function injectOptions:New(text)
+    local instance = setmetatable({}, injectOptions);
+    instance.text = text;
+    return instance;
+end
