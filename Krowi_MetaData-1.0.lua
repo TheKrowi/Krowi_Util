@@ -22,7 +22,7 @@ local lib = LibStub("Krowi_Util-1.0");
 lib.Metadata = {};
 local metadata = lib.Metadata;
 
-function metadata.GetMetaData(addonName)
+function metadata.GetAddOnMetadata(addonName)
     local title = GetAddOnMetadata(addonName, "Title");
     local build = GetBuildInfo();
     local version = GetAddOnMetadata(addonName, "Version");
