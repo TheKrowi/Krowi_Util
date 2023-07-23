@@ -23,28 +23,38 @@ lib.InjectOptions = {};
 local injectOptions = lib.InjectOptions;
 
 injectOptions.__index = injectOptions;
-function injectOptions:New(optionsTable, defaultOptions, widthMultiplier)
+function injectOptions:New()
     local instance = setmetatable({}, injectOptions);
-    instance.OptionsTable = optionsTable;
-    instance.DefaultOptions = defaultOptions;
 
     instance.AdjustedWidth = function(number)
-        return (number or 1) * widthMultiplier or 170; -- Default Ace3
+        return (number or 1) * (instance.WidthMultiplier or 170); -- Default Ace3
     end
 
     instance.autoOrder = 1;
     instance.AutoOrderPlusPlus = function(amount)
-        local current = self.autoOrder;
-        self.autoOrder = self.autoOrder + (1 or amount);
+        local current = instance.autoOrder;
+        instance.autoOrder = instance.autoOrder + (1 or amount);
         return current;
     end
 
     instance.PlusPlusAutoOrder = function(amount)
-        self.autoOrder = self.autoOrder + (1 or amount);
-        return self.autoOrder;
+        instance.autoOrder = instance.autoOrder + (1 or amount);
+        return instance.autoOrder;
     end
 
     return instance;
+end
+
+function injectOptions:SetOptionsTable(optionsTable)
+    self.OptionsTable = optionsTable;
+end
+
+function injectOptions:SetDefaultOptions(defaultOptions)
+    self.DefaultOptions = defaultOptions;
+end
+
+function injectOptions:SetWidthMultiplier(widthMultiplier)
+    self.WidthMultiplier = widthMultiplier;
 end
 
 function injectOptions:AddTable(destTablePath, key, table)
