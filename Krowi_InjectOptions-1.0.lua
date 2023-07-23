@@ -88,3 +88,30 @@ function injectOptions:DefaultsExists(destTablePath)
     end
     return destTable and true or false;
 end
+
+function injectOptions:AddPluginTable(pluginName, pluginDisplayName, desc, loadedFunc)
+    local OrderPP = self.AutoOrderPlusPlus;
+    return self:AddTable("Plugins.args", pluginName, {
+        type = "group",
+        name = pluginDisplayName,
+        args = {
+            Loaded = {
+                order = OrderPP(), type = "toggle", width = "full",
+                name = "Loaded", --addon.L["Loaded"],
+                desc = "Loaded Desc", -- addon.L["Loaded Desc"],
+                descStyle = "inline",
+                get = loadedFunc,
+                disabled = true
+            },
+            Line = {
+                order = OrderPP(), type = "header", width = "full",
+                name = ""
+            },
+            Description = {
+                order = OrderPP(), type = "description", width = "full",
+                name = desc,
+                fontSize = "medium"
+            }
+        }
+    }).args;
+end
