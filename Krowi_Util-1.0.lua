@@ -51,6 +51,7 @@ function lib.ReplaceVars(str, vars)
         end
     end));
 end
+string.ReplaceVars = lib.ReplaceVars;
 
 function lib.DeepCopyTable(src, dest)
 	for index, value in pairs(src) do
