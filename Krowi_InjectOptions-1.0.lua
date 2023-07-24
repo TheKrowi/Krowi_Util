@@ -59,7 +59,6 @@ end
 
 function injectOptions:SetLocalization(localization)
     self.L = localization;
-    print("setting loc", localization, self.L)
 end
 
 function injectOptions:AddTable(destTablePath, key, table)

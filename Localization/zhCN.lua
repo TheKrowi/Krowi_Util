@@ -19,10 +19,10 @@
 ]]
 
 local lib = LibStub("Krowi_Util-1.0");
-lib.Localization.deDE = {};
-local localization = lib.Localization.deDE;
+lib.Localization.zhCN = {};
+local localization = lib.Localization.zhCN;
 
 function localization.Load(L)
-	L["Loaded"] = "Geladen";
-	L["Loaded Desc"] = "Zeigt an, ob das mit dem Plugin verbundene Addon geladen ist oder nicht.";
+    L["Loaded"] = "已加载";
+    -- L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
 end

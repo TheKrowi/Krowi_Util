@@ -19,8 +19,8 @@
 ]]
 
 local lib = LibStub("Krowi_Util-1.0");
-lib.Localization.enUS = {};
-local localization = lib.Localization.enUS;
+lib.Localization.frFR = {};
+local localization = lib.Localization.frFR;
 
 function localization.Load(L)
 	L["Loaded"] = "Chargé";
