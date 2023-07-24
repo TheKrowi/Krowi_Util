@@ -1,6 +1,6 @@
-<!-- 
+--[[
 	Krowi's Util License
-		Copyright ©2020 The contents of this library, excluding third-party resources, are
+		Copyright ©2023 The contents of this library, excluding third-party resources, are
 		copyrighted to their authors with all rights reserved.
 
 		This library is free to use and the authors hereby grants you the following rights:
@@ -16,12 +16,13 @@
 
 		All rights not explicitly addressed in this license are reserved by
 		the copyright holders.
- -->
+]]
 
-<Ui>
-	<Script file="Krowi_Util-1.0.lua"/>
-	<Script file="Krowi_Colors-1.0.lua"/>
-	<Script file="Krowi_Metadata-1.0.lua"/>
-	<Script file="Krowi_InjectOptions-1.0.lua"/>
-	<Include file="Localization\Files.xml"/>
-</Ui>
+local lib = LibStub("Krowi_Util-1.0");
+lib.Localization.enUS = {};
+local localization = lib.Localization.enUS;
+
+function localization.Load(L)
+	L["Loaded"] = "Geladen";
+	L["Loaded Desc"] = "Zeigt an, ob das mit dem Plugin verbundene Addon geladen ist oder nicht.";
+end

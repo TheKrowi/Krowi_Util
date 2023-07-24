@@ -57,6 +57,11 @@ function injectOptions:SetWidthMultiplier(widthMultiplier)
     self.WidthMultiplier = widthMultiplier;
 end
 
+function injectOptions:SetLocalization(localization)
+    self.L = localization;
+    print("setting loc", localization, self.L)
+end
+
 function injectOptions:AddTable(destTablePath, key, table)
     local destTable;
     if type(destTablePath) == "table" then
@@ -107,8 +112,8 @@ function injectOptions:AddPluginTable(pluginName, pluginDisplayName, desc, loade
         args = {
             Loaded = {
                 order = OrderPP(), type = "toggle", width = "full",
-                name = "Loaded", --addon.L["Loaded"],
-                desc = "Loaded Desc", -- addon.L["Loaded Desc"],
+                name = self.L["Loaded"],
+                desc = self.L["Loaded Desc"],
                 descStyle = "inline",
                 get = loadedFunc,
                 disabled = true
