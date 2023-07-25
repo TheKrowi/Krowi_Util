@@ -18,7 +18,7 @@
 		the copyright holders.
 ]]
 
-local lib = LibStub:NewLibrary("Krowi_Util-1.0", 2);
+local lib = LibStub:NewLibrary("Krowi_Util-1.0", 3);
 
 if not lib then
 	return;

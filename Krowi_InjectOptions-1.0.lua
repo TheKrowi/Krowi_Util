@@ -129,3 +129,11 @@ function injectOptions:AddPluginTable(pluginName, pluginDisplayName, desc, loade
         }
     }).args;
 end
+
+
+-- function lib.AddReloadRequired(str)
+--     return str .. "\n\n" .. addon.L["Requires a reload"];
+-- end
+-- string["AddReloadRequired_KMFE"] = function(self)
+--     return self .. "\n\n" .. addon.L["Requires a reload"];
+-- end

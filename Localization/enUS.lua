@@ -18,11 +18,16 @@
 		the copyright holders.
 ]]
 
+local addonName, addon = ...;
+print(addonName, addon)
 local lib = LibStub("Krowi_Util-1.0");
 lib.Localization.enUS = {};
 local localization = lib.Localization.enUS;
 
+-- local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true, true);
+
 function localization.Load(L)
     L["Loaded"] = "Loaded";
     L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
+	L["Requires a reload"] = "Requires a reload to take full effect.";
 end

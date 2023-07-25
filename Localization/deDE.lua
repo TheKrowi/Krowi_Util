@@ -25,4 +25,5 @@ local localization = lib.Localization.deDE;
 function localization.Load(L)
 	L["Loaded"] = "Geladen";
 	L["Loaded Desc"] = "Zeigt an, ob das mit dem Plugin verbundene Addon geladen ist oder nicht.";
+	L["Requires a reload"] = "Funktioniert erst nach einem /reload.";
 end

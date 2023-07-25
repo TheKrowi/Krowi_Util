@@ -25,4 +25,5 @@ local localization = lib.Localization.zhCN;
 function localization.Load(L)
     L["Loaded"] = "已加载";
     -- L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
+	L["Requires a reload"] = "需要重载界面";
 end
