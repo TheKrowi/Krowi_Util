@@ -57,9 +57,9 @@ function injectOptions:SetWidthMultiplier(widthMultiplier)
     self.WidthMultiplier = widthMultiplier;
 end
 
-function injectOptions:SetLocalization(localization)
-    self.L = localization;
-end
+-- function injectOptions:SetLocalization(localization)
+--     self.L = localization;
+-- end
 
 function injectOptions:AddTable(destTablePath, key, table)
     local destTable;
@@ -111,8 +111,8 @@ function injectOptions:AddPluginTable(pluginName, pluginDisplayName, desc, loade
         args = {
             Loaded = {
                 order = OrderPP(), type = "toggle", width = "full",
-                name = self.L["Loaded"],
-                desc = self.L["Loaded Desc"],
+                name = lib.L["Loaded"],
+                desc = lib.L["Loaded Desc"],
                 descStyle = "inline",
                 get = loadedFunc,
                 disabled = true

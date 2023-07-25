@@ -19,4 +19,5 @@
 ]]
 
 local lib = LibStub("Krowi_Util-1.0");
-lib.Localization = {};
+-- lib.Localization = {};
+lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0");
