@@ -18,4 +18,24 @@ if not lib then
 	return;
 end
 
-lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0");
+function lib.ReplaceVars(str, vars)
+    -- Allow ReplaceVars{str, vars} syntax as well as ReplaceVars(str, {vars})
+    if not vars then
+        vars = str;
+        str = vars[1];
+    end
+    return (string.gsub(str, "({([^}]+)})", function(whole, i)
+        if type(vars) == "table" then
+            return vars[i] or whole;
+        else
+            return vars;
+        end
+    end));
+end
+string.K_ReplaceVars = lib.ReplaceVars;
+
+
+function lib.AddReloadRequired(str)
+    return str .. "\n\n" .. lib.L["Requires a reload"];
+end
+string.K_AddReloadRequired = lib.AddReloadRequired;

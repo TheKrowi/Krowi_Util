@@ -1,21 +1,15 @@
 --[[
-	Krowi's Util License
-		Copyright ©2020 The contents of this library, excluding third-party resources, are
-		copyrighted to their authors with all rights reserved.
+    Copyright (c) 2023 Krowi
 
-		This library is free to use and the authors hereby grants you the following rights:
+    All Rights Reserved unless otherwise explicitly stated.
 
-		1. 	You may make modifications to this library for private use only, you
-			may not publicize any portion of this library. The only exception being you may
-			upload to the github website.
-
-		2. 	Do not modify the name of this library, including the library folders.
-
-		3. 	This copyright notice shall be included in all copies or substantial
-			portions of the Software.
-
-		All rights not explicitly addressed in this license are reserved by
-		the copyright holders.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 ]]
 
 local lib = LibStub:NewLibrary("Krowi_Util-1.0", 3);
@@ -36,22 +30,6 @@ end
 function lib.InjectMetatable(tbl, meta)
     return setmetatable(tbl, setmetatable(meta, getmetatable(tbl)));
 end
-
-function lib.ReplaceVars(str, vars)
-    -- Allow ReplaceVars{str, vars} syntax as well as ReplaceVars(str, {vars})
-    if not vars then
-        vars = str;
-        str = vars[1];
-    end
-    return (string.gsub(str, "({([^}]+)})", function(whole, i)
-        if type(vars) == "table" then
-            return vars[i] or whole;
-        else
-            return vars;
-        end
-    end));
-end
-string.K_ReplaceVars = lib.ReplaceVars;
 
 function lib.DeepCopyTable(src, dest)
 	for index, value in pairs(src) do

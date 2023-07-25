@@ -1,26 +1,22 @@
 --[[
-	Krowi's Util License
-		Copyright ©2023 The contents of this library, excluding third-party resources, are
-		copyrighted to their authors with all rights reserved.
+    Copyright (c) 2023 Krowi
 
-		This library is free to use and the authors hereby grants you the following rights:
+    All Rights Reserved unless otherwise explicitly stated.
 
-		1. 	You may make modifications to this library for private use only, you
-			may not publicize any portion of this library. The only exception being you may
-			upload to the github website.
-
-		2. 	Do not modify the name of this library, including the library folders.
-
-		3. 	This copyright notice shall be included in all copies or substantial
-			portions of the Software.
-
-		All rights not explicitly addressed in this license are reserved by
-		the copyright holders.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 ]]
 
 local lib = LibStub("Krowi_Util-1.0");
--- lib.Localization.enUS = {};
--- local localization = lib.Localization.enUS;
+
+if not lib then
+	return;
+end
 
 if lib.IsLoaded_enUS then
 	return;
@@ -28,10 +24,8 @@ end
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "enUS", true, true);
 
--- function localization.Load(L)
-    L["Loaded"] = "Loaded";
-    L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
-	L["Requires a reload"] = "Requires a reload to take full effect.";
--- end
+L["Loaded"] = "Loaded";
+L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
+L["Requires a reload"] = "Requires a reload to take full effect.";
 
 lib.IsLoaded_enUS = true;
