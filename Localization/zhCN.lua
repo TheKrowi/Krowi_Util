@@ -18,9 +18,13 @@
 		the copyright holders.
 ]]
 
--- local lib = LibStub("Krowi_Util-1.0");
+local lib = LibStub("Krowi_Util-1.0");
 -- lib.Localization.zhCN = {};
 -- local localization = lib.Localization.zhCN;
+
+if lib.IsLoaded_zhCN then
+	return;
+end
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "zhCN");
 if not L then return end
@@ -30,3 +34,5 @@ if not L then return end
     -- L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
 	L["Requires a reload"] = "需要重载界面";
 -- end
+
+lib.IsLoaded_zhCN = true;

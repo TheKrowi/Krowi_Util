@@ -18,9 +18,13 @@
 		the copyright holders.
 ]]
 
--- local lib = LibStub("Krowi_Util-1.0");
+local lib = LibStub("Krowi_Util-1.0");
 -- lib.Localization.deDE = {};
 -- local localization = lib.Localization.deDE;
+
+if lib.IsLoaded_deDE then
+	return;
+end
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "deDE");
 if not L then return end
@@ -30,3 +34,5 @@ if not L then return end
 	L["Loaded Desc"] = "Zeigt an, ob das mit dem Plugin verbundene Addon geladen ist oder nicht.";
 	L["Requires a reload"] = "Funktioniert erst nach einem /reload.";
 -- end
+
+lib.IsLoaded_deDE = true;
