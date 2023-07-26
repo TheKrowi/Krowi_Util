@@ -23,6 +23,7 @@ if lib.IsLoaded_deDE then
 end
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "deDE");
+print("new de")
 if not L then return end
 
 L["Loaded"] = "Geladen";
