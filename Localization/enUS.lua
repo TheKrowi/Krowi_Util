@@ -24,7 +24,6 @@ end
 lib.IsLoaded_enUS = true;
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "enUS", true, true);
-print("new en")
 
 L["Loaded"] = "Loaded";
 L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";

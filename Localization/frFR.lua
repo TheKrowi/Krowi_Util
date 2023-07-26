@@ -24,7 +24,6 @@ end
 lib.IsLoaded_frFR = true;
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "frFR");
-print("new fr")
 if not L then return end
 
 L["Loaded"] = "Chargé";
