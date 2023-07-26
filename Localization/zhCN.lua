@@ -21,6 +21,7 @@ end
 if lib.IsLoaded_zhCN then
 	return;
 end
+lib.IsLoaded_zhCN = true;
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "zhCN");
 if not L then return end
@@ -28,5 +29,3 @@ if not L then return end
 L["Loaded"] = "已加载";
 -- L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
 L["Requires a reload"] = "需要重载界面";
-
-lib.IsLoaded_zhCN = true;
