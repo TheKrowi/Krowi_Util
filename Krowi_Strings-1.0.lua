@@ -18,7 +18,10 @@ if not lib then
 	return;
 end
 
-function lib.ReplaceVars(str, vars)
+lib.Strings = {};
+local strings = lib.Strings;
+
+function strings.ReplaceVars(str, vars)
     -- Allow ReplaceVars{str, vars} syntax as well as ReplaceVars(str, {vars})
     if not vars then
         vars = str;
@@ -32,10 +35,26 @@ function lib.ReplaceVars(str, vars)
         end
     end));
 end
-string.K_ReplaceVars = lib.ReplaceVars;
+string.K_ReplaceVars = strings.ReplaceVars;
 
-
-function lib.AddReloadRequired(str)
+function strings.AddReloadRequired(str)
     return str .. "\n\n" .. lib.L["Requires a reload"];
 end
-string.K_AddReloadRequired = lib.AddReloadRequired;
+string.K_AddReloadRequired = strings.AddReloadRequired;
+
+function strings.AddDefaultValueText(str, startTbl, valuePath, values)
+    local value = startTbl;
+    local pathParts = strsplittable(".", valuePath);
+    for _, part in next, pathParts do
+        part = tonumber(part) and tonumber(part) or part;
+        value = value[part];
+    end
+    if type(value) == "boolean" then
+        value = value and lib.L["Checked"] or lib.L["Unchecked"];
+    end
+    if values then
+        value = values[value];
+    end
+    return str .. "\n\n" .. lib.L["Default value"] .. ": " .. tostring(value);
+end
+string.K_AddDefaultValueText = strings.AddDefaultValueText;
