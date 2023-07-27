@@ -37,3 +37,40 @@ function options.Open(title)
     Settings.GetCategory(title).expanded = true;
     Settings.OpenToCategory(title, true);
 end
+
+options.__index = options;
+function options:New(savedVariable, name, injectOptions)
+    local instance = setmetatable({}, options);
+
+    instance.SavedVariable = savedVariable;
+    instance.Name = name;
+    instance.OptionsTables = {};
+    instance.WidthMultiplier = lib.IsWrathClassic and 1 or 200 / 170; -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
+    instance.OptionsTable = {
+        name = name,
+        type = "group",
+        childGroups = "tab",
+        args = {}
+    };
+
+    injectOptions:SetWidthMultiplier(instance.WidthMultiplier);
+
+    return instance;
+end
+
+function options:Load(addon)
+    addon.Options = LibStub("AceDB-3.0"):New(self.SavedVariable, self.Defaults, true);
+    addon.Options.WidthMultiplier = self.WidthMultiplier;
+    addon.Options.Open = function()
+        options.Open(self.Name);
+    end
+    addon.Options.db = addon.Options.profile;
+
+    for _, optionsTable in next, self.OptionsTables do
+        optionsTable.RegisterOptionsTable();
+    end
+
+    for _, optionsTable in next, self.OptionsTables do
+        optionsTable.PostLoad();
+    end
+end
