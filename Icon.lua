@@ -66,11 +66,14 @@ function icon:OnAddonCompartmentEnter(_, menuButtonFrame)
     self:SetTooltipContent(GameTooltip);
     GameTooltip:Show();
 end
+_G[addon.Metadata.Prefix .. "_OnAddonCompartmentEnter"] = function(...) icon:OnAddonCompartmentEnter(...); end
 
 function icon:OnAddonCompartmentLeave()
     GameTooltip:Hide();
 end
+_G[addon.Metadata.Prefix .. "_OnAddonCompartmentLeave"] = function(...) icon:OnAddonCompartmentLeave(...); end
 
 function icon:OnAddonCompartmentClick(_, button)
     self:OnClick(button)
 end
+_G[addon.Metadata.Prefix .. "_OnAddonCompartmentClick"] = function(...) icon:OnAddonCompartmentClick(...); end
