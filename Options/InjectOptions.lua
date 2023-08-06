@@ -32,20 +32,12 @@ function injectOptions.PlusPlusAutoOrder(amount)
     return autoOrder;
 end
 
-function injectOptions:SetOptionsTable(optionsTable)
-    self.OptionsTable = optionsTable;
-end
-
-function injectOptions:SetDefaultOptions(defaultOptions)
-    self.DefaultOptions = defaultOptions;
-end
-
 function injectOptions:AddTable(destTablePath, key, table)
     local destTable;
     if type(destTablePath) == "table" then
         destTable = destTablePath;
     elseif type(destTablePath) == "string" then
-        destTable = self.OptionsTable.args;
+        destTable = addon.Options.OptionsTable.args;
         local pathParts = strsplittable(".", destTablePath);
         for _, part in next, pathParts do
             destTable = destTable[part];
@@ -56,7 +48,7 @@ function injectOptions:AddTable(destTablePath, key, table)
 end
 
 function injectOptions:TableExists(destTablePath)
-    local destTable = self.OptionsTable.args;
+    local destTable = addon.Options.OptionsTable.args;
     local pathParts = strsplittable(".", destTablePath);
     for _, part in next, pathParts do
         destTable = destTable[part];
@@ -65,7 +57,7 @@ function injectOptions:TableExists(destTablePath)
 end
 
 function injectOptions:AddDefaults(destTablePath, key, table)
-    local destTable = self.DefaultOptions;
+    local destTable = addon.Options.Defaults.profile;
     local pathParts = strsplittable(".", destTablePath);
     for _, part in next, pathParts do
         destTable = destTable[part];
@@ -74,7 +66,7 @@ function injectOptions:AddDefaults(destTablePath, key, table)
 end
 
 function injectOptions:DefaultsExists(destTablePath)
-    local destTable = self.DefaultOptions;
+    local destTable = addon.Options.Defaults.profile;
     local pathParts = strsplittable(".", destTablePath);
     for _, part in next, pathParts do
         destTable = destTable[part];
