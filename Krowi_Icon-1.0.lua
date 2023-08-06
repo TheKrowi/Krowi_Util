@@ -65,7 +65,7 @@ end
 function icon:Load(addon)
     self:CreateIcon();
 
-    local db = addon.Options.db;
+    local db = addon.Options.db.profile;
     db.Minimap.hide = not db.ShowMinimapIcon;
     ldbIcon:Register(self.LdbName, self.LdbObject, db.Minimap);
 end
