@@ -39,21 +39,22 @@ function options.Open(title)
 end
 
 options.__index = options;
-function options:New(savedVariable, name, injectOptions)
+function options:New(addon)
+    local metadata = addon.Metadata;
     local instance = setmetatable({}, options);
 
-    instance.SavedVariable = savedVariable;
-    instance.Name = name;
+    instance.SavedVariable = metadata.Prefix .. "_Options";
+    instance.Name = metadata.Title;
     instance.OptionsTables = {};
     instance.WidthMultiplier = lib.IsWrathClassic and 1 or 200 / 170; -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
     instance.OptionsTable = {
-        name = name,
+        name = metadata.Title,
         type = "group",
         childGroups = "tab",
         args = {}
     };
 
-    injectOptions:SetWidthMultiplier(instance.WidthMultiplier);
+    addon.InjectOptions:SetWidthMultiplier(instance.WidthMultiplier);
 
     return instance;
 end

@@ -23,6 +23,7 @@ local metadata = lib.Metadata;
 
 function metadata.GetAddOnMetadata(addonName)
     local title = GetAddOnMetadata(addonName, "Title");
+    local prefix = GetAddOnMetadata(addonName, "X-Prefix");
     local build = GetBuildInfo();
     local version = GetAddOnMetadata(addonName, "Version");
     local author = GetAddOnMetadata(addonName, "Author");
@@ -32,10 +33,11 @@ function metadata.GetAddOnMetadata(addonName)
     local curseForge = GetAddOnMetadata(addonName, "X-CurseForge");
     local wago = GetAddOnMetadata(addonName, "X-Wago");
     local woWInterface = GetAddOnMetadata(addonName, "X-WoWInterface");
-print(addonName)
+    
     return {
         AddonName = addonName,
         Title = title,
+        Prefix = prefix,
         Build = build,
         Version = version,
         BuildVersion = build .. "." .. version,
