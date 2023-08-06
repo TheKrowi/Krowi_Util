@@ -15,20 +15,20 @@
 local _, addon = ...;
 addon.Options = {};
 local options = addon.Options;
-local metadata = addon.Metadata;
+local name = addon.Metadata.Title;
 
 options.OptionsTables = {};
 options.WidthMultiplier = addon.Util.IsWrathClassic and 1 or 200 / 170; -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
 
 options.OptionsTable = {
-    name = metadata.Title,
+    name = name,
     type = "group",
     childGroups = "tab",
     args = {}
 };
 
 function options:Load()
-    self.db = LibStub("AceDB-3.0"):New(metadata.Prefix .. "_Options", self.Defaults, true);
+    self.db = LibStub("AceDB-3.0"):New(addon.Metadata.Prefix .. "_Options", self.Defaults, true);
     self.OptionsTable.args.Profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db);
 
     for _, optionsTable in next, self.OptionsTables do
@@ -41,8 +41,6 @@ function options:Load()
 end
 
 function options:Open()
-    local name = metadata.Title;
-
     if addon.Util.IsWrathClassic then
         InterfaceAddOnsList_Update(); -- This way the correct category will be shown when calling InterfaceOptionsFrame_OpenToCategory
         InterfaceOptionsFrame_OpenToCategory(name);
@@ -57,4 +55,12 @@ function options:Open()
 
     Settings.GetCategory(name).expanded = true;
     Settings.OpenToCategory(name, true);
+end
+
+string[addon.Metadata.Acronym .. "_InjectAddonName"] = function(str)
+    return str:K_ReplaceVars{addonName = addon.Metadata.Title};
+end
+
+string[addon.Metadata.Acronym .. "_AddDefaultValueText"] = function(str, valuePath, values)
+    return str:K_AddDefaultValueText(options.Defaults.profile, valuePath, values);
 end

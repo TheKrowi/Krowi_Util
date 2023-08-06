@@ -24,6 +24,7 @@ local metadata = lib.Metadata;
 function metadata.GetAddOnMetadata(addonName)
     local title = GetAddOnMetadata(addonName, "Title");
     local prefix = GetAddOnMetadata(addonName, "X-Prefix");
+    local acronym = GetAddOnMetadata(addonName, "X-Acronym");
     local build = GetBuildInfo();
     local version = GetAddOnMetadata(addonName, "Version");
     local author = GetAddOnMetadata(addonName, "Author");
@@ -38,6 +39,7 @@ function metadata.GetAddOnMetadata(addonName)
         AddonName = addonName,
         Title = title,
         Prefix = prefix,
+        Acronym = acronym,
         Build = build,
         Version = version,
         BuildVersion = build .. "." .. version,
