@@ -18,5 +18,4 @@
 	<Script file="Krowi_Strings-1.0.lua"/>
 	<Script file="Krowi_Colors-1.0.lua"/>
 	<Script file="Krowi_Metadata-1.0.lua"/>
-	<Script file="Krowi_Icon-1.0.lua"/>
 </Ui>

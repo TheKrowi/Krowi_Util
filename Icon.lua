@@ -12,34 +12,16 @@
     SOFTWARE.
 ]]
 
-local lib = LibStub("Krowi_Util-1.0");
+local ldbIcon = LibStub("LibDBIcon-1.0");
 
-if not lib then
-	return;
-end
-
-local ldbIcon = LibStub("LibDBIcon-1.0"); -- Global icon object
-
-
-lib.Icon = {};
-local icon = lib.Icon;
-
-icon.__index = icon;
-function icon:New(metaData, setMoreTooltipContent, onLeftClick, onRightClick)
-    local instance = setmetatable({}, icon);
-
-    instance.Metadata = metaData;
-    instance.LdbName = metaData.AddonName .. "LDB";
-    instance.SetMoreTooltipContent = setMoreTooltipContent;
-    instance.OnLeftClick = onLeftClick;
-    instance.OnRightClick = onRightClick;
-
-    return instance;
-end
+local addonName, addon = ...;
+addon.Icon = {};
+local icon = addon.Icon;
+local ldbName = addonName .. "LDB";
 
 function icon:SetTooltipContent(tooltip)
     tooltip:ClearLines();
-    tooltip:AddDoubleLine(self.Metadata.Title, self.Metadata.BuildVersion);
+    tooltip:AddDoubleLine(addon.Metadata.Title, addon.Metadata.BuildVersion);
     GameTooltip_AddBlankLineToTooltip(tooltip);
     self.SetMoreTooltipContent(tooltip);
 end
@@ -53,29 +35,29 @@ function icon:OnClick(button)
 end
 
 function icon:CreateIcon()
-    self.LdbObject = LibStub("LibDataBroker-1.1"):NewDataObject(self.LdbName, {
+    self.LdbObject = LibStub("LibDataBroker-1.1"):NewDataObject(ldbName, {
         type = "launcher",
-        label = self.Metadata.Title,
-        icon = self.Metadata.Icon,
+        label = addon.Metadata.Title,
+        icon = addon.Metadata.Icon,
         OnClick = function(_, button) self:OnClick(button); end,
         OnTooltipShow = function(tooltip) self:SetTooltipContent(tooltip); end
     });
 end
 
-function icon:Load(addon)
+function icon:Load()
     self:CreateIcon();
 
     local db = addon.Options.db.profile;
     db.Minimap.hide = not db.ShowMinimapIcon;
-    ldbIcon:Register(self.LdbName, self.LdbObject, db.Minimap);
+    ldbIcon:Register(ldbName, self.LdbObject, db.Minimap);
 end
 
 function icon:Show()
-    ldbIcon:Show(self.LdbName);
+    ldbIcon:Show(ldbName);
 end
 
 function icon:Hide()
-    ldbIcon:Hide(self.LdbName);
+    ldbIcon:Hide(ldbName);
 end
 
 function icon:OnAddonCompartmentEnter(_, menuButtonFrame)
