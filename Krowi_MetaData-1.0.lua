@@ -26,18 +26,21 @@ function metadata.GetAddOnMetadata(addonName)
     local build = GetBuildInfo();
     local version = GetAddOnMetadata(addonName, "Version");
     local author = GetAddOnMetadata(addonName, "Author");
+    local icon = GetAddOnMetadata(addonName, "IconTexture");
     local discordInviteLink = GetAddOnMetadata(addonName, "X-Discord-Invite-Link");
     local discordServerName = GetAddOnMetadata(addonName, "X-Discord-Server-Name");
     local curseForge = GetAddOnMetadata(addonName, "X-CurseForge");
     local wago = GetAddOnMetadata(addonName, "X-Wago");
     local woWInterface = GetAddOnMetadata(addonName, "X-WoWInterface");
-
+print(addonName)
     return {
+        AddonName = addonName,
         Title = title,
         Build = build,
         Version = version,
         BuildVersion = build .. "." .. version,
         Author = author,
+        Icon = icon,
         DiscordInviteLink = discordInviteLink,
         DiscordServerName = discordServerName,
         CurseForge = curseForge,

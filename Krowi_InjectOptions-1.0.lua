@@ -29,16 +29,16 @@ function injectOptions:New()
         return (number or 1) * (instance.WidthMultiplier or 170); -- Default Ace3
     end
 
-    instance.autoOrder = 1;
+    instance.AutoOrder = 1;
     instance.AutoOrderPlusPlus = function(amount)
-        local current = instance.autoOrder;
-        instance.autoOrder = instance.autoOrder + (1 or amount);
+        local current = instance.AutoOrder;
+        instance.AutoOrder = instance.AutoOrder + (1 or amount);
         return current;
     end
 
     instance.PlusPlusAutoOrder = function(amount)
-        instance.autoOrder = instance.autoOrder + (1 or amount);
-        return instance.autoOrder;
+        instance.AutoOrder = instance.AutoOrder + (1 or amount);
+        return instance.AutoOrder;
     end
 
     return instance;

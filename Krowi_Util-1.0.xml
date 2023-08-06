@@ -20,4 +20,5 @@
 	<Script file="Krowi_Metadata-1.0.lua"/>
 	<Script file="Krowi_InjectOptions-1.0.lua"/>
 	<Script file="Krowi_Options-1.0.lua"/>
+	<Script file="Krowi_Icon-1.0.lua"/>
 </Ui>
