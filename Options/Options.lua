@@ -12,75 +12,42 @@
     SOFTWARE.
 ]]
 
-local lib = LibStub("Krowi_Util-1.0");
+local _, addon = ...;
+addon.Options = {};
+local options = addon.Options;
+local metadata = addon.Metadata;
 
-if not lib then
-	return;
-end
+options.OptionsTables = {};
+options.WidthMultiplier = addon.Util.IsWrathClassic and 1 or 200 / 170; -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
 
-lib.Options = {};
-local options = lib.Options;
+options.OptionsTable = {
+    name = metadata.Title,
+    type = "group",
+    childGroups = "tab",
+    args = {}
+};
 
-options.__index = options;
-function options:New(addon)
-    local metadata = addon.Metadata;
-    local instance = setmetatable({}, options);
-
-    instance.Metadata = addon.Metadata;
-    instance.SavedVariable = metadata.Prefix .. "_Options";
-    instance.Name = metadata.Title;
-    instance.OptionsTables = {};
-    instance.WidthMultiplier = lib.IsWrathClassic and 1 or 200 / 170; -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
-    instance.OptionsTable = {
-        name = metadata.Title,
-        type = "group",
-        childGroups = "tab",
-        args = {}
-    };
-
-    addon.InjectOptions:SetWidthMultiplier(instance.WidthMultiplier);
-
-    return instance;
-end
-
-function options:Load(addon)
-    self.db = LibStub("AceDB-3.0"):New(self.SavedVariable, self.Defaults, true);
+function options:Load()
+    self.db = LibStub("AceDB-3.0"):New(metadata.Prefix .. "_Options", self.Defaults, true);
     self.OptionsTable.args.Profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db);
 
     for _, optionsTable in next, self.OptionsTables do
-        if optionsTable.IsProfiles then
-            LibStub("AceConfig-3.0"):RegisterOptionsTable("Profiles", self.OptionsTable.args.Profiles);
-            LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Profiles", "Profiles", self.Metadata.Title);
-        else
-            optionsTable.RegisterOptionsTable();
-        end
+        optionsTable.RegisterOptionsTable();
     end
 
     for _, optionsTable in next, self.OptionsTables do
-        if not optionsTable.IsProfiles then
-            optionsTable.PostLoad();
-        end
-    end
-end
-
-function options:InsertProfilesOptions()
-    local profiles = {};
-    tinsert(self.OptionsTables, profiles);
-    profiles.RegisterOptionsTable = function()
-        LibStub("AceConfig-3.0"):RegisterOptionsTable("Profiles", self.OptionsTable.args.Profiles);
-        LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Profiles", "Profiles", self.Metadata.Title);
-    end
-    profiles.PostLoad = function()
-        
+        optionsTable.PostLoad();
     end
 end
 
 function options:Open()
-    if lib.IsWrathClassic then
+    local name = metadata.Title;
+
+    if addon.Util.IsWrathClassic then
         InterfaceAddOnsList_Update(); -- This way the correct category will be shown when calling InterfaceOptionsFrame_OpenToCategory
-        InterfaceOptionsFrame_OpenToCategory(self.Name);
+        InterfaceOptionsFrame_OpenToCategory(name);
         for _, button in next, InterfaceOptionsFrameAddOns.buttons do
-            if button.element and button.element.name == self.Name and button.element.collapsed then
+            if button.element and button.element.name == name and button.element.collapsed then
                 OptionsListButtonToggle_OnClick(button.toggle);
                 break;
             end
@@ -88,6 +55,6 @@ function options:Open()
         return;
     end
 
-    Settings.GetCategory(self.Name).expanded = true;
-    Settings.OpenToCategory(self.Name, true);
+    Settings.GetCategory(name).expanded = true;
+    Settings.OpenToCategory(name, true);
 end

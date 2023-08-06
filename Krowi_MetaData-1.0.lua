@@ -33,7 +33,7 @@ function metadata.GetAddOnMetadata(addonName)
     local curseForge = GetAddOnMetadata(addonName, "X-CurseForge");
     local wago = GetAddOnMetadata(addonName, "X-Wago");
     local woWInterface = GetAddOnMetadata(addonName, "X-WoWInterface");
-    
+
     return {
         AddonName = addonName,
         Title = title,

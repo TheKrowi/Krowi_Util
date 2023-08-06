@@ -12,36 +12,24 @@
     SOFTWARE.
 ]]
 
-local lib = LibStub("Krowi_Util-1.0");
+local _, addon = ...;
+addon.InjectOptions = {};
+local injectOptions = addon.InjectOptions;
 
-if not lib then
-	return;
+function injectOptions.AdjustedWidth(number)
+    return (number or 1) * (addon.Options.WidthMultiplier or 170); -- Default Ace3
 end
 
-lib.InjectOptions = {};
-local injectOptions = lib.InjectOptions;
+local autoOrder = 1;
+function injectOptions.AutoOrderPlusPlus(amount)
+    local current = autoOrder;
+    autoOrder = autoOrder + (1 or amount);
+    return current;
+end
 
-injectOptions.__index = injectOptions;
-function injectOptions:New()
-    local instance = setmetatable({}, injectOptions);
-
-    instance.AdjustedWidth = function(number)
-        return (number or 1) * (instance.WidthMultiplier or 170); -- Default Ace3
-    end
-
-    instance.AutoOrder = 1;
-    instance.AutoOrderPlusPlus = function(amount)
-        local current = instance.AutoOrder;
-        instance.AutoOrder = instance.AutoOrder + (1 or amount);
-        return current;
-    end
-
-    instance.PlusPlusAutoOrder = function(amount)
-        instance.AutoOrder = instance.AutoOrder + (1 or amount);
-        return instance.AutoOrder;
-    end
-
-    return instance;
+function injectOptions.PlusPlusAutoOrder(amount)
+    autoOrder = autoOrder + (1 or amount);
+    return autoOrder;
 end
 
 function injectOptions:SetOptionsTable(optionsTable)
@@ -50,10 +38,6 @@ end
 
 function injectOptions:SetDefaultOptions(defaultOptions)
     self.DefaultOptions = defaultOptions;
-end
-
-function injectOptions:SetWidthMultiplier(widthMultiplier)
-    self.WidthMultiplier = widthMultiplier;
 end
 
 function injectOptions:AddTable(destTablePath, key, table)
@@ -106,8 +90,8 @@ function injectOptions:AddPluginTable(pluginName, pluginDisplayName, desc, loade
         args = {
             Loaded = {
                 order = OrderPP(), type = "toggle", width = "full",
-                name = lib.L["Loaded"],
-                desc = lib.L["Loaded Desc"],
+                name = addon.Util.L["Loaded"],
+                desc = addon.Util.L["Loaded Desc"],
                 descStyle = "inline",
                 get = loadedFunc,
                 disabled = true
