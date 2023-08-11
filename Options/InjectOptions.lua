@@ -47,6 +47,15 @@ function injectOptions:AddTable(destTablePath, key, table)
     return destTable[key];
 end
 
+function injectOptions:GetTable(destTablePath)
+    local destTable = addon.Options.OptionsTable.args;
+    local pathParts = strsplittable(".", destTablePath);
+    for _, part in next, pathParts do
+        destTable = destTable[part];
+    end
+    return destTable;
+end
+
 function injectOptions:TableExists(destTablePath)
     local destTable = addon.Options.OptionsTable.args;
     local pathParts = strsplittable(".", destTablePath);
