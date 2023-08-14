@@ -27,18 +27,53 @@ options.OptionsTable = {
     args = {}
 };
 
+local onProfileChangedFunctions = {};
+function options.OnProfileChanged(db, newProfile)
+    for _, func in next, onProfileChangedFunctions do
+        func(db, newProfile);
+    end
+end
+
+local onProfileCopiedFunctions = {};
+function options.OnProfileCopied(db, sourceProfile)
+    for _, func in next, onProfileCopiedFunctions do
+        func(db, sourceProfile);
+    end
+end
+
+local onProfileResetFunctions = {};
+function options.OnProfileReset(db)
+    for _, func in next, onProfileResetFunctions do
+        func(db);
+    end
+end
+
 function options:Load()
     self.db = LibStub("AceDB-3.0"):New(addon.Metadata.Prefix .. "_Options", self.Defaults, true);
+    self.db.RegisterCallback(self, "OnProfileChanged", "OnProfileChanged");
+    self.db.RegisterCallback(self, "OnProfileCopied", "OnProfileCopied");
+    self.db.RegisterCallback(self, "OnProfileReset", "OnProfileReset");
     self.OptionsTable.args.Profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db);
 
     for _, optionsTable in next, self.OptionsTables do
-        optionsTable.RegisterOptionsTable();
-    end
-
-    for _, optionsTable in next, self.OptionsTables do
-        optionsTable.PostLoad();
+        if type(optionsTable.RegisterOptionsTable) == "function" then
+            optionsTable.RegisterOptionsTable();
+        end
+        if type(optionsTable.PostLoad) == "function" then
+            optionsTable.PostLoad();
+        end
+        if type(optionsTable.OnProfileChanged) == "function" then
+            tinsert(onProfileChangedFunctions, optionsTable.OnProfileChanged);
+        end
+        if type(optionsTable.OnProfileCopied) == "function" then
+            tinsert(onProfileCopiedFunctions, optionsTable.OnProfileCopied);
+        end
+        if type(optionsTable.OnProfileReset) == "function" then
+            tinsert(onProfileResetFunctions, optionsTable.OnProfileReset);
+        end
     end
 end
+
 
 function options:Open()
     if addon.Util.IsWrathClassic then
