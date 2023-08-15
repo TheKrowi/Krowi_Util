@@ -48,12 +48,14 @@ function options.OnProfileReset(db)
     end
 end
 
-function options:Load()
+function options:Load(manualProfilesTable)
     self.db = LibStub("AceDB-3.0"):New(addon.Metadata.Prefix .. "_Options", self.Defaults, true);
     self.db.RegisterCallback(self, "OnProfileChanged", "OnProfileChanged");
     self.db.RegisterCallback(self, "OnProfileCopied", "OnProfileCopied");
     self.db.RegisterCallback(self, "OnProfileReset", "OnProfileReset");
-    self.OptionsTable.args.Profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db);
+    if not manualProfilesTable then
+        self.OptionsTable.args.Profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db);
+    end
 
     for _, optionsTable in next, self.OptionsTables do
         if type(optionsTable.RegisterOptionsTable) == "function" then

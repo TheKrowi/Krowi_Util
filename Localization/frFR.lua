@@ -29,3 +29,7 @@ if not L then return end
 L["Loaded"] = "Chargé";
 L["Loaded Desc"] = "Indique si l'addon associé au plugin est chargé ou non.";
 L["Requires a reload"] = "Nécessite un /reload";
+L["Profiles"] = "Profils";
+L["Default value"] = "Valeur par défaut";
+L["Unchecked"] = "Non coché";
+L["Checked"] = "Coché";

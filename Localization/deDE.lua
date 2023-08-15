@@ -29,3 +29,7 @@ if not L then return end
 L["Loaded"] = "Geladen";
 L["Loaded Desc"] = "Zeigt an, ob das mit dem Plugin verbundene Addon geladen ist oder nicht.";
 L["Requires a reload"] = "Funktioniert erst nach einem /reload.";
+L["Profiles"] = "Profile";
+L["Default value"] = "Vorgabewert (Standard)";
+L["Unchecked"] = "Nicht aktiviert";
+L["Checked"] = "Aktivert";

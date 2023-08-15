@@ -20,9 +20,5 @@ tinsert(options.OptionsTables, profiles);
 
 function profiles.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_Profiles", options.OptionsTable.args.Profiles);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_Profiles", "Profiles", addon.Metadata.Title);
-end
-
-function profiles.PostLoad()
-
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_Profiles", addon.Util.L["Profiles"], addon.Metadata.Title);
 end

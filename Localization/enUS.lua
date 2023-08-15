@@ -28,3 +28,7 @@ local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "enUS", true, tru
 L["Loaded"] = "Loaded";
 L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
 L["Requires a reload"] = "Requires a reload to take full effect.";
+L["Profiles"] = "Profiles";
+L["Default value"] = "Default value";
+L["Unchecked"] = "Unchecked";
+L["Checked"] = "Checked";
