@@ -19,3 +19,5 @@ if not lib then
 end
 
 lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0");
+
+lib.L["Requires a reload"] = lib.L["Requires a reload"]:SetColorOrange();
