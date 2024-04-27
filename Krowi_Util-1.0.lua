@@ -21,6 +21,8 @@ end
 local version = (GetBuildInfo());
 local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
 lib.IsWrathClassic = major == "3";
+
+lib.IsCataclysmClassic = major == "4";
 lib.IsDragonflightRetail = major == "10";
 
 function lib.ConcatTables(t1, t2)
