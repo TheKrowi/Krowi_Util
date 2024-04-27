@@ -12,7 +12,7 @@
     SOFTWARE.
 ]]
 
-local lib = LibStub:NewLibrary("Krowi_Util-1.0", 6);
+local lib = LibStub:NewLibrary("Krowi_Util-1.0", 7);
 
 if not lib then
 	return;
@@ -21,7 +21,6 @@ end
 local version = (GetBuildInfo());
 local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
 lib.IsWrathClassic = major == "3";
-
 lib.IsCataclysmClassic = major == "4";
 lib.IsDragonflightRetail = major == "10";
 
