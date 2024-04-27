@@ -22,6 +22,7 @@ local version = (GetBuildInfo());
 local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
 lib.IsWrathClassic = major == "3";
 lib.IsCataClassic = major == "4";
+lib.IsClassicWithAchievements = lib.IsWrathClassic or lib.IsCataClassic;
 lib.IsDragonflightRetail = major == "10";
 
 function lib.ConcatTables(t1, t2)
