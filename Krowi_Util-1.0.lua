@@ -12,7 +12,7 @@
     SOFTWARE.
 ]]
 
-local lib = LibStub:NewLibrary("Krowi_Util-1.0", 7);
+local lib = LibStub:NewLibrary("Krowi_Util-1.0", 8);
 
 if not lib then
 	return;
@@ -125,4 +125,40 @@ function lib.TableFindKeyByValue(table, value)
             return key;
         end
     end
+end
+
+function lib.IsType(value, _type)
+    return type(value) == _type;
+end
+
+function lib.IsNil(value)
+    return lib.IsType(value, "nil");
+end
+
+function lib.IsNumber(value)
+    return lib.IsType(value, "number");
+end
+
+function lib.IsString(value)
+    return lib.IsType(value, "string");
+end
+
+function lib.IsBoolean(value)
+    return lib.IsType(value, "boolean");
+end
+
+function lib.IsTable(value)
+    return lib.IsType(value, "table");
+end
+
+function lib.IsFunction(value)
+    return lib.IsType(value, "function");
+end
+
+function lib.IsThread(value)
+    return lib.IsType(value, "thread");
+end
+
+function lib.IsUserData(value)
+    return lib.IsType(value, "userdata");
 end
