@@ -12,7 +12,7 @@
     SOFTWARE.
 ]]
 
-local lib = LibStub:NewLibrary("Krowi_Util-1.0", 8);
+local lib = LibStub:NewLibrary("Krowi_Util-1.0", 9);
 
 if not lib then
 	return;
