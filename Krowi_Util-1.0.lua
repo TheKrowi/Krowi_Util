@@ -12,7 +12,7 @@
     SOFTWARE.
 ]]
 
-local lib = LibStub:NewLibrary("Krowi_Util-1.0", 10);
+local lib = LibStub:NewLibrary("Krowi_Util-1.0", 11);
 
 if not lib then
 	return;
@@ -25,7 +25,7 @@ lib.IsCataClassic = major == "4";
 lib.IsClassicWithAchievements = lib.IsWrathClassic or lib.IsCataClassic;
 lib.IsDragonflight = major == "10";
 lib.IsTheWarWithin = major == "11";
-lib.IsMainline = major >= "10";
+lib.IsMainline = lib.IsDragonflight or lib.IsTheWarWithin;
 
 function lib.ConcatTables(t1, t2)
     if t2 then
