@@ -51,24 +51,6 @@ A comprehensive utility library for World of Warcraft addon development, providi
 - **Options Framework** (`Options/`) - Profile management and AceConfig integration
 - **Localization Support** - English, German, French, Chinese (Simplified)
 
-## Installation
-
-### As a Library Dependency
-1. Include in your addon's `.toc` file:
-```
-## OptionalDeps: Krowi_Util
-```
-
-2. Reference in your XML:
-```xml
-<Script file="path/to/Krowi_Util-1.0.xml"/>
-```
-
-3. Access in your Lua code:
-```lua
-local KrowiUtil = LibStub("Krowi_Util-1.0")
-```
-
 ## Usage Examples
 
 ### String Variable Replacement
@@ -115,13 +97,10 @@ end
 - LibDBIcon-1.0 (for minimap icon)
 - LibDataBroker-1.1 (for minimap icon)
 
-## License
-Copyright (c) 2023 Krowi. All Rights Reserved unless otherwise explicitly stated.
+## Contributing
+Contributions, translations, and feedback are welcome! Special thanks to all contributors, donors, and translators listed in the credits system.
 
 ## Support
 <a href="https://www.paypal.com/donate/?hosted_button_id=9QEDV37APQ6YJ" alt="Paypal">
   <img src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" />
 </a>
-
-## Contributing
-Contributions, translations, and feedback are welcome! Special thanks to all contributors, donors, and translators listed in the credits system.
