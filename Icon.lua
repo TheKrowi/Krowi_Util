@@ -12,6 +12,8 @@
     SOFTWARE.
 ]]
 
+---@diagnostic disable: undefined-global
+
 local ldbIcon = LibStub("LibDBIcon-1.0");
 
 local addonName, addon = ...;
