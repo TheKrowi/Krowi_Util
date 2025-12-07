@@ -1,11 +1,127 @@
-## Support me
-<a href="https://www.paypal.com/donate/?hosted_button_id=NYWTBA4XM6ZS6" alt="Paypal">
+# Krowi_Util
+
+A comprehensive utility library for World of Warcraft addon development, providing reusable functions for string manipulation, table operations, color management, metadata handling, and more.
+
+## Features
+
+### Core Utilities (`Krowi_Util-1.0.lua`)
+- **Version Detection**: Automatic detection of WoW version (Mainline, Classic variants)
+- **Table Operations**:
+  - `ConcatTables(t1, t2)` - Merge two tables
+  - `DeepCopyTable(src, dest)` - Deep copy table contents
+  - `TableRemoveByValue(table, value)` - Remove element by value
+  - `TableFindKeyByValue(table, value)` - Find key by value
+  - `Enum(table)` / `Enum2(table)` - Create enumerations
+- **Nested Key Operations**:
+  - `ReadNestedKeys(tbl, keys)` - Read deeply nested table values
+  - `WriteNestedKeys(tbl, keys, value)` - Write to deeply nested tables
+  - `SafeGet(source, path)` - Safe nested access with nil checking
+- **Utility Functions**:
+  - `DelayFunction(name, delay, func, ...)` - Delayed function execution
+  - `StringSplitTable(delimiter, str)` - Split string into table
+  - `InjectMetatable(tbl, meta)` - Metatable injection
+- **Type Checking**: `IsNil`, `IsNumber`, `IsString`, `IsBoolean`, `IsTable`, `IsFunction`, `IsThread`, `IsUserData`
+
+### String Utilities (`Krowi_Strings-1.0.lua`)
+- `ReplaceVars(str, vars)` - Template variable replacement (supports `{varName}` syntax)
+- `AddReloadRequired(str)` - Append reload requirement message
+- `AddDefaultValueText(str, startTbl, valuePath, values)` - Add default value information
+
+### Color Management (`Krowi_Colors-1.0.lua`)
+- **Color Utilities**:
+  - `SetTextColor(text, color)` - Apply color to text
+  - `RemoveColor(text)` - Strip color codes
+  - `RGBPrct2HEX(r, g, b, a)` - Convert RGB percentages to hex
+- **Predefined Colors**: AddonBlue, Green, LightGreen, Grey, LightGrey, Red, LightRed, Orange, LightOrange, Yellow, White
+- **Item Quality Colors**: Poor, Common, Uncommon, Rare, Epic
+- **Dynamic String Methods**: Auto-generated `SetColor*` methods for all color types
+
+### Metadata Management (`Krowi_MetaData-1.0.lua`)
+- `GetAddOnMetadata(addonName)` - Extract comprehensive addon metadata including:
+  - Title, Version, Author, Icon
+  - Custom fields (Prefix, Acronym, Discord, CurseForge, Wago, WoWInterface)
+
+### Credits System (`Krowi_Credits-1.0.lua`)
+- `GetSpecialThanksAsTable()` - Formatted list of contributors
+- `GetDonationsAsTable()` - Formatted list of donors
+- `GetLocalizationsAsTable()` - Formatted list of translators
+
+### Additional Features
+- **Minimap Icon Support** (`Icon.lua`) - LibDBIcon integration with tooltip and click handling
+- **Options Framework** (`Options/`) - Profile management and AceConfig integration
+- **Localization Support** - English, German, French, Chinese (Simplified)
+
+## Installation
+
+### As a Library Dependency
+1. Include in your addon's `.toc` file:
+```
+## OptionalDeps: Krowi_Util
+```
+
+2. Reference in your XML:
+```xml
+<Script file="path/to/Krowi_Util-1.0.xml"/>
+```
+
+3. Access in your Lua code:
+```lua
+local KrowiUtil = LibStub("Krowi_Util-1.0")
+```
+
+## Usage Examples
+
+### String Variable Replacement
+```lua
+local util = LibStub("Krowi_Util-1.0")
+local text = util.Strings.ReplaceVars("Hello {name}, you have {count} items", {
+    name = "Player",
+    count = 5
+})
+-- Result: "Hello Player, you have 5 items"
+```
+
+### Color Management
+```lua
+local colors = LibStub("Krowi_Util-1.0").Colors
+local coloredText = colors.SetTextColor("Warning!", colors.Red)
+-- Or use string method:
+local epicText = "Legendary Item".SetColorEpic(self)
+```
+
+### Table Operations
+```lua
+local util = LibStub("Krowi_Util-1.0")
+local data = {player = {stats = {health = 100}}}
+local health = util.SafeGet(data, {"player", "stats", "health"}) -- Returns 100
+local missing = util.SafeGet(data, {"player", "items", "sword"}) -- Returns nil safely
+```
+
+### Version Detection
+```lua
+local util = LibStub("Krowi_Util-1.0")
+if util.IsMainline then
+    -- Mainline-specific code
+elseif util.IsMistsClassic then
+    -- Mists Classic-specific code
+end
+```
+
+## Requirements
+- LibStub
+- AceLocale-3.0
+- AceConfig-3.0 (for options)
+- AceConfigDialog-3.0 (for options UI)
+- LibDBIcon-1.0 (for minimap icon)
+- LibDataBroker-1.1 (for minimap icon)
+
+## License
+Copyright (c) 2023 Krowi. All Rights Reserved unless otherwise explicitly stated.
+
+## Support
+<a href="https://www.paypal.com/donate/?hosted_button_id=9QEDV37APQ6YJ" alt="Paypal">
   <img src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" />
 </a>
-<a href="https://www.patreon.com/Krowi" alt="Patreon">
-  <img src="https://raw.githubusercontent.com/codebard/patron-button-and-widgets-by-codebard/master/images/become_a_patron_button.png" />
-</a>
-<a href='https://ko-fi.com/E1E6G64LS' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-## Purpose
-This library was created to make some string and table manipulations reusable. This library was initially created for personal use so documentation is lacking.
+## Contributing
+Contributions, translations, and feedback are welcome! Special thanks to all contributors, donors, and translators listed in the credits system.
