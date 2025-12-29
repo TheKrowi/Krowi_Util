@@ -14,7 +14,7 @@
 
 ## Interface: 110207, 50502, 11508
 ## Title: Krowi's |cFF1D92C2Util|r
-## Version: 1.0.12
+## Version: 1.0.13
 ## Author: Krowi
 ## Notes: A comprehensive utility library providing reusable functions for string manipulation, table operations, color management, and metadata handling
 ## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
