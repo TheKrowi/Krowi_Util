@@ -5,7 +5,7 @@
 
 ---@diagnostic disable: undefined-global
 
-local function NewLibrary(self, libName, libVersion)
+local function NewLibrary(self, libName, libVersion, setCurrent)
     assert(type(libName) == 'string', 'Bad argument #2 to \'InitLibrary\' (string expected)')
     libVersion = assert(tonumber(string.match(libVersion, '%d+')), 'Bad argument #3 to \'InitLibrary\' (version must either be a number or contain a number)')
 
@@ -15,12 +15,14 @@ local function NewLibrary(self, libName, libVersion)
     lib.Name = libName
     lib.Version = libVersion
 
-    KROWI_LIB_CURRENT = lib -- Set the new library as the current one for easy access without needing to know its name
+    if setCurrent ~= false then
+        KROWI_LIB_CURRENT = lib -- Set the new library as the current one for easy access without needing to know its name
+    end
 
     return lib
 end
 
-local lib = NewLibrary('Krowi_LibMan', 1)
+local lib = NewLibrary(nil, 'Krowi_LibMan', 1)
 if not lib then return end
 
 KROWI_LIBMAN = lib
@@ -48,7 +50,7 @@ function lib:NewSubmodule(subName, subVersion, parentLibrary)
         parentLibrary = KROWI_LIB_CURRENT
     end
 
-    local submodule = lib.NewLibrary(parentLibrary.Name .. '_' .. subName, subVersion)
+    local submodule = self:NewLibrary(parentLibrary.Name .. '_' .. subName, subVersion, false)
     if not submodule then return end
 
     -- Create reference on main library for convenience

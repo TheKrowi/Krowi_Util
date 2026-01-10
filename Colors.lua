@@ -60,15 +60,17 @@ sub.RareRGB = { R = ITEM_QUALITY_COLORS[3].r, G = ITEM_QUALITY_COLORS[3].g, B = 
 sub.EpicRGB = { R = ITEM_QUALITY_COLORS[4].r, G = ITEM_QUALITY_COLORS[4].g, B = ITEM_QUALITY_COLORS[4].b }
 
 -- Adding functions dynamically to string
-local baseName, colorFormat
+local tmpColors = {}
 for colorName, color in next, sub do
     if type(color) == 'table' and colorName:sub(-3) == 'RGB' then
-        baseName = colorName:sub(1, -4)
+        local baseName = colorName:sub(1, -4)
         color.Hex = sub.RGBPrct2HEX(color)
-        colorFormat = string.format(colorTextFormatPattern, color.Hex)
-        sub[baseName] = colorFormat
+        local colorFormat = string.format(colorTextFormatPattern, color.Hex)
+        tmpColors[baseName] = colorFormat
         string['SetColor' .. baseName] = function(self)
             return sub.SetTextColor(self, colorFormat)
         end
     end
 end
+parent.DeepCopyTable(tmpColors, sub)
+tmpColors = nil
