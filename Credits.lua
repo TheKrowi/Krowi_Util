@@ -1,27 +1,12 @@
 --[[
     Copyright (c) 2023 Krowi
-
-    All Rights Reserved unless otherwise explicitly stated.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+    Licensed under the terms of the LICENSE file in this repository.
 ]]
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-1.0");
-
-if not lib then
-	return;
-end
-
-lib.Credits = {};
-local credits = lib.Credits;
+local sub = KROWI_LIBMAN:NewSubmodule('Credits', 0)
+if not sub then	return end
 
 local specialThanks = {
     {Name = "Bur", Realm = "Frostmane EU", Class = "DRUID", Text = "Continuous support and helpful input and answers on questions that make this addon better; It wouldn't be as good without you :)"},
@@ -29,7 +14,7 @@ local specialThanks = {
     {Name = "Silden", Class = "", Text = "Contributed a lot of tooltip data, especially related to pet battles"},
 }
 
-function credits.GetSpecialThanksAsTable()
+function sub.GetSpecialThanksAsTable()
     local texts, text = {}, "";
     for _, specialTnx in next, specialThanks do
         local argbHex = specialTnx.Class ~= "" and select(4, GetClassColor(specialTnx.Class)) or "FFC0C0C0";
@@ -57,7 +42,7 @@ local donations = {
     {Name = "Ilunk", Realm = "Alleria EU", Class = "MONK"},
 }
 
-function credits.GetDonationsAsTable()
+function sub.GetDonationsAsTable()
     local texts, text = {}, "";
     for _, donation in next, donations do
         local argbHex = donation.Class ~= "" and select(4, GetClassColor(donation.Class)) or "FFC0C0C0";
@@ -78,7 +63,7 @@ local localizations = {
     {Name = "Морфей", Realm = "Борейская тундра RU", Class = "WARLOCK", Language = "Russian"},
 }
 
-function credits.GetLocalizationsAsTable()
+function sub.GetLocalizationsAsTable()
     local texts, text = {}, "";
     for _, localization in next, localizations do
         local argbHex = localization.Class ~= "" and select(4, GetClassColor(localization.Class)) or "FFC0C0C0";

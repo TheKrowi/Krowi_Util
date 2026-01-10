@@ -14,10 +14,10 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-1.0", true)
+local lib = LibStub("Krowi_Util-2.0", true)
 if not lib and not lib.L then return end
 
-local l = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0")
+local l = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-2.0")
 lib.L["Requires a reload"] = l["Requires a reload"]:SetColorOrange()
 
-lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0")
+lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-2.0")

@@ -1,31 +1,19 @@
 --[[
     Copyright (c) 2023 Krowi
-
-    All Rights Reserved unless otherwise explicitly stated.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+    Licensed under the terms of the LICENSE file in this repository.
 ]]
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub:NewLibrary("Krowi_Util-1.0", 13);
-
-if not lib then
-	return;
-end
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Util-2.0', 0)
+if not lib then	return end
 
 local version = (GetBuildInfo());
-local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
-lib.IsMistsClassic = major == "5";
+local majorVersion = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
+lib.IsMistsClassic = majorVersion == "5";
 lib.IsClassicWithAchievements = lib.IsMistsClassic;
-lib.IsTheWarWithin = major == "11";
-lib.IsMidnight = major == "12";
+lib.IsTheWarWithin = majorVersion == "11";
+lib.IsMidnight = majorVersion == "12";
 lib.IsMainline = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE;
 
 function lib.ConcatTables(t1, t2)

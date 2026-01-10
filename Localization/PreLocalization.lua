@@ -14,24 +14,8 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-1.0", true)
+local lib = LibStub("Krowi_Util-2.0", true)
 if not lib then	return end
 if lib.Localization then return end
 
-lib.Localization = {}
-local localization = lib.Localization
-
-local localeIsLoaded, defaultLocale = {}, 'enUS'
-function localization.GetDefaultLocale()
-    if localeIsLoaded[defaultLocale] then return end
-
-    localeIsLoaded[defaultLocale] = true
-    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", defaultLocale, true, true)
-end
-
-function localization.GetLocale(locale)
-    if localeIsLoaded[locale] then return end
-
-    localeIsLoaded[locale] = true
-    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", locale)
-end
+lib.Localization = lib.LocalizationHelper.NewLocalization()

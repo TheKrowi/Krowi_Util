@@ -14,10 +14,10 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-1.0", true);
+local lib = LibStub("Krowi_Util-2.0", true);
 if not lib then	return end
 
-local L = lib.Localization.GetLocale('deDE')
+local L = lib.Localization.NewLocale('deDE')
 if not L then return end
 lib.L = L
 
