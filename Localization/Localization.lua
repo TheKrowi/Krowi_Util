@@ -1,5 +1,5 @@
 --[[
-    Copyright (c) 2023 Krowi
+    Copyright (c) 2026 Krowi
 
     All Rights Reserved unless otherwise explicitly stated.
 
@@ -14,12 +14,24 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-1.0");
+local lib = LibStub("Krowi_Util-1.0", true)
+if not lib then	return end
+if lib.Localization then return end
 
-if not lib then
-	return;
+lib.Localization = {}
+local localization = lib.Localization
+
+local localeIsLoaded, defaultLocale = {}, 'enUS'
+function localization.GetDefaultLocale()
+    if localeIsLoaded[defaultLocale] then return end
+
+    localeIsLoaded[defaultLocale] = true
+    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", defaultLocale, true, true)
 end
 
-lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0");
+function localization.GetLocale(locale)
+    if localeIsLoaded[locale] then return end
 
-lib.L["Requires a reload"] = lib.L["Requires a reload"]:SetColorOrange();
+    localeIsLoaded[locale] = true
+    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", locale)
+end

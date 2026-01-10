@@ -14,23 +14,21 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-1.0");
+local lib = LibStub("Krowi_Util-1.0", true);
+if not lib then	return end
 
-if not lib then
-	return;
-end
+local L = lib.Localization.GetDefaultLocale()
+if not L then return end
+lib.L = L
 
-if lib.IsLoaded_enUS then
-	return;
-end
-lib.IsLoaded_enUS = true;
+-- [[ https://legacy.curseforge.com/wow/addons/krowi-util/localization ]] --
+-- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Util-1.0", "enUS", true, true);
-
-L["Loaded"] = "Loaded";
-L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not.";
-L["Requires a reload"] = "Requires a reload to take full effect.";
-L["Profiles"] = "Profiles";
-L["Default value"] = "Default value";
-L["Unchecked"] = "Unchecked";
-L["Checked"] = "Checked";
+-- [[ Exported at 2026-01-10 11-32-44 ]] --
+L["Checked"] = true
+L["Default value"] = true
+L["Loaded"] = true
+L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not."
+L["Profiles"] = true
+L["Requires a reload"] = "Requires a reload to take full effect."
+L["Unchecked"] = true

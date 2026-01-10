@@ -1,5 +1,5 @@
 --[[
-    Copyright (c) 2023 Krowi
+    Copyright (c) 2026 Krowi
 
     All Rights Reserved unless otherwise explicitly stated.
 
@@ -14,17 +14,8 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-1.0", true);
-if not lib then	return end
+local lib = LibStub("Krowi_Util-1.0", true)
+if not lib and not lib.L then return end
 
-local L = lib.Localization.GetLocale('zhCN')
-if not L then return end
-lib.L = L
-
--- [[ https://legacy.curseforge.com/wow/addons/krowi-util/localization ]] --
--- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
-
--- [[ Exported at 2026-01-10 11-32-46 ]] --
-L["Loaded"] = "已加载"
-L["Profiles"] = "配置文件"
-L["Requires a reload"] = "需要重载界面"
+local l = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0")
+lib.L["Requires a reload"] = l["Requires a reload"]:SetColorOrange()

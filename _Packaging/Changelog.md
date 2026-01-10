@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.14 - 2026-01-10
+### Added
+- Support for WoW 12.0.0 (Midnight)
+
+### Changed
+- Improved localization handling
+
+### TBC Classic
+- Support added
+
 ## 1.0.13 - 2025-12-29
 ### Changed
 - Updated `lib.IsMainline` to use `WOW_PROJECT_ID == WOW_PROJECT_MAINLINE` instead of version-specific checks
