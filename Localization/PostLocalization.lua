@@ -19,3 +19,5 @@ if not lib and not lib.L then return end
 
 local l = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0")
 lib.L["Requires a reload"] = l["Requires a reload"]:SetColorOrange()
+
+lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-1.0")
