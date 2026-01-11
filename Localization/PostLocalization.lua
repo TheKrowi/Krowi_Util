@@ -22,6 +22,6 @@ L['AddOns'] = ADDONS
 L['Options'] = GAMEOPTIONS_MENU
 
 local l = lib.Localization.GetLocale(lib)
-L["Requires a reload"] = l["Requires a reload"]:SetColorOrange()
+L['Requires a reload'] = l['Requires a reload']:SetColorOrange()
 
 lib.L = lib.Localization.GetLocale(lib)

@@ -4,5 +4,5 @@
  -->
 
 <Ui>
-	<Script file="LibStub.lua"/>
+	<Script file='LibStub.lua'/>
 </Ui>

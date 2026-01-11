@@ -59,3 +59,13 @@ function lib:NewSubmodule(subName, subVersion, parentLibrary)
     return submodule, parentLibrary
 end
 
+function lib:SetUtilLibrary(utilLibrary)
+    self.UtilLibrary = utilLibrary
+end
+
+function lib:GetUtilLibrary(silent)
+    if not self.UtilLibrary and not silent then
+        error('No current library is set.', 2)
+    end
+    return self.UtilLibrary
+end
