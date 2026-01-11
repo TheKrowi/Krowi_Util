@@ -16,21 +16,21 @@ local function NewLibrary(self, libName, libVersion, setCurrent, setUtil, initLo
     lib.Version = libVersion
 
     self = self or lib
-    if setCurrent then
+    if setCurrent ~= false then
         self.CurrentLibrary = lib
     end
 
-    if setUtil then
+    if setUtil ~= false then
         lib.Util = self:GetUtil()
     end
 
-    if initLocalization then
+    if initLocalization ~= false then
         lib.Util.LocalizationHelper.InitLocalization(lib)
     end
     return lib
 end
 
-local lib = NewLibrary(nil, 'Krowi_LibMan', 0)
+local lib = NewLibrary(nil, 'Krowi_LibMan', 0, false, false, false)
 if not lib then return end
 
 KROWI_LIBMAN = lib
@@ -58,7 +58,7 @@ function lib:NewSubmodule(subName, subVersion, parentLibrary)
         parentLibrary = self.CurrentLibrary
     end
 
-    local submodule = self:NewLibrary(parentLibrary.Name .. '_' .. subName, subVersion, false)
+    local submodule = self:NewLibrary(parentLibrary.Name .. '_' .. subName, subVersion, false, false, false)
     if not submodule then return end -- Already loaded and no upgrade needed
 
     parentLibrary[subName] = submodule

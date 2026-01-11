@@ -42,3 +42,6 @@ L["Show minimap icon"] = true
 L["Show minimap icon Desc"] = "Show / hide the minimap icon."
 L["Deselect All"] = true
 L["Select All"] = true
+L["Left-Click"] = true
+L["Right-Click"] = true
+L["Hide"] = true

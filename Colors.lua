@@ -40,7 +40,12 @@ function sub.RGBPrct2HEX(r, g, b, a)
     )
 end
 
+function sub.UnpackRGB(rgb)
+    return rgb.R, rgb.G, rgb.B
+end
+
 sub.AddonBlueRGB = { R = 0.11, G = 0.57, B = 0.76 }
+sub.TpInstrRGB = { R = 0.5, G = 0.8, B = 1.0 } -- Tooltip Instructions Color
 
 sub.GreenRGB = { R = QuestDifficultyColors['standard'].r, G = QuestDifficultyColors['standard'].g, B = QuestDifficultyColors['standard'].b }
 sub.LightGreenRGB = { R = QuestDifficultyHighlightColors['standard'].r, G = QuestDifficultyHighlightColors['standard'].g, B = QuestDifficultyHighlightColors['standard'].b }
