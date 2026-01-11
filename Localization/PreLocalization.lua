@@ -1,21 +1,11 @@
 --[[
-    Copyright (c) 2026 Krowi
-
-    All Rights Reserved unless otherwise explicitly stated.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+    Copyright (c) 2023 Krowi
+    Licensed under the terms of the LICENSE file in this repository.
 ]]
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-2.0", true)
+local lib = KROWI_LIBMAN:GetCurrentLibrary(true)
 if not lib then	return end
-if lib.Localization then return end
 
-lib.Localization = lib.LocalizationHelper.NewLocalization()
+lib.LocalizationHelper.InitLocalization(lib)

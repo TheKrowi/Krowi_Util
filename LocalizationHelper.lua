@@ -9,30 +9,37 @@ local sub, parent = KROWI_LIBMAN:NewSubmodule('LocalizationHelper', 0)
 if not sub or not parent then return end
 
 local aceLocaleName = parent.Constants.AceLocaleName
-local localeIsLoaded, defaultLocale = {}, 'enUS'
+local defaultLocale = 'enUS'
 
-function sub.NewDefaultLocale()
-    if localeIsLoaded[defaultLocale] then return end
-
+local function NewDefaultLocale(appName, localeIsLoaded, addMore)
+    if localeIsLoaded[defaultLocale] and not addMore then return end
     localeIsLoaded[defaultLocale] = true
-    return LibStub(aceLocaleName):NewLocale(parent.Name, defaultLocale, true)
+    return LibStub(aceLocaleName):NewLocale(appName, defaultLocale, true)
 end
 
-function sub.NewLocale(locale)
-    if localeIsLoaded[locale] then return end
-
+local function NewLocale(appName, localeIsLoaded, locale, addMore)
+    if localeIsLoaded[locale] and not addMore then return end
     localeIsLoaded[locale] = true
-    return LibStub(aceLocaleName):NewLocale(parent.Name, locale)
+    return LibStub(aceLocaleName):NewLocale(appName, locale)
 end
 
-function sub.GetLocale()
-    return LibStub(aceLocaleName):GetLocale(parent.Name)
+local function GetLocale(appName)
+    return LibStub(aceLocaleName):GetLocale(appName)
 end
 
-function sub.NewLocalization()
-    return {
-        NewDefaultLocale = sub.NewDefaultLocale,
-        NewLocale = sub.NewLocale,
-        GetLocale = sub.GetLocale
+function sub.InitLocalization(app, appName)
+    if app.Localization then return end
+    appName = appName or app.Name or app
+    local localeIsLoaded = {}
+    app.Localization = {
+        NewDefaultLocale = function(addMore)
+            return NewDefaultLocale(appName, localeIsLoaded, addMore)
+        end,
+        NewLocale = function(locale, addMore)
+            return NewLocale(appName, localeIsLoaded, locale, addMore)
+        end,
+        GetLocale = function()
+            return GetLocale(appName)
+        end
     }
 end

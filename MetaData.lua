@@ -9,36 +9,33 @@ local sub = KROWI_LIBMAN:NewSubmodule('Metadata', 0)
 if not sub then	return end
 
 local buildVersionFormat = '%s.%s'
+local metadataCache = {}
 
 function sub.GetAddOnMetadata(addonName)
+    if metadataCache[addonName] then
+        return metadataCache[addonName]
+    end
+
     local getAddOnMetadata = C_AddOns.GetAddOnMetadata
-    local title = getAddOnMetadata(addonName, 'Title')
-    local prefix = getAddOnMetadata(addonName, 'X-Prefix')
-    local acronym = getAddOnMetadata(addonName, 'X-Acronym')
     local build = GetBuildInfo()
     local version = getAddOnMetadata(addonName, 'Version')
-    local author = getAddOnMetadata(addonName, 'Author')
-    local icon = getAddOnMetadata(addonName, 'IconTexture')
-    local discordInviteLink = getAddOnMetadata(addonName, 'X-Discord-Invite-Link')
-    local discordServerName = getAddOnMetadata(addonName, 'X-Discord-Server-Name')
-    local curseForge = getAddOnMetadata(addonName, 'X-CurseForge')
-    local wago = getAddOnMetadata(addonName, 'X-Wago')
-    local woWInterface = getAddOnMetadata(addonName, 'X-WoWInterface')
 
-    return {
+    metadataCache[addonName] = {
         AddonName = addonName,
-        Title = title,
-        Prefix = prefix,
-        Acronym = acronym,
+        Title = getAddOnMetadata(addonName, 'Title'),
+        Prefix = getAddOnMetadata(addonName, 'X-Prefix'),
+        Acronym = getAddOnMetadata(addonName, 'X-Acronym'),
         Build = build,
         Version = version,
         BuildVersion = string.format(buildVersionFormat, build, version),
-        Author = author,
-        Icon = icon,
-        DiscordInviteLink = discordInviteLink,
-        DiscordServerName = discordServerName,
-        CurseForge = curseForge,
-        Wago = wago,
-        WoWInterface = woWInterface
+        Author = getAddOnMetadata(addonName, 'Author'),
+        Icon = getAddOnMetadata(addonName, 'IconTexture'),
+        DiscordInviteLink = getAddOnMetadata(addonName, 'X-Discord-Invite-Link'),
+        DiscordServerName = getAddOnMetadata(addonName, 'X-Discord-Server-Name'),
+        CurseForge = getAddOnMetadata(addonName, 'X-CurseForge'),
+        Wago = getAddOnMetadata(addonName, 'X-Wago'),
+        WoWInterface = getAddOnMetadata(addonName, 'X-WoWInterface')
     }
+
+    return metadataCache[addonName]
 end

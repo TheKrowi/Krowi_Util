@@ -1,20 +1,11 @@
 --[[
     Copyright (c) 2023 Krowi
-
-    All Rights Reserved unless otherwise explicitly stated.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+    Licensed under the terms of the LICENSE file in this repository.
 ]]
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-2.0", true);
+local lib = KROWI_LIBMAN:GetCurrentLibrary(true)
 if not lib then	return end
 
 local L = lib.Localization.NewDefaultLocale()
@@ -32,3 +23,22 @@ L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or no
 L["Profiles"] = true
 L["Requires a reload"] = "Requires a reload to take full effect."
 L["Unchecked"] = true
+L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page."
+L["Credits"] = true
+L["Special thanks"] = true
+L["Donations"] = true
+L["Localizations"] = true
+L["Author"] = true
+L["Build"] = true
+L["CurseForge"] = true
+L["CurseForge Desc"] = "Open a popup dialog with a link to the {addonName} {curseForge} page."
+L["Discord"] = true
+L["Discord Desc"] = "Open a popup dialog with a link to the {serverName} Discord server. Here you can post comments, reports, remarks, ideas or anything else related."
+L["Wago"] = true
+L["Left click"] = true
+L["Right click"] = true
+L["Plugins"] = true
+L["Show minimap icon"] = true
+L["Show minimap icon Desc"] = "Show / hide the minimap icon."
+L["Deselect All"] = true
+L["Select All"] = true

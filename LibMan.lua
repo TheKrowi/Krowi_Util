@@ -16,7 +16,8 @@ local function NewLibrary(self, libName, libVersion, setCurrent)
     lib.Version = libVersion
 
     if setCurrent ~= false then
-        KROWI_LIB_CURRENT = lib -- Set the new library as the current one for easy access without needing to know its name
+        self = self or lib
+        self.CurrentLibrary = lib
     end
 
     return lib
@@ -34,10 +35,10 @@ function lib:GetLibrary(libName, silent)
 end
 
 function lib:GetCurrentLibrary(silent)
-    if not KROWI_LIB_CURRENT and not silent then
+    if not self.CurrentLibrary and not silent then
         error('No current library is set.', 2)
     end
-    return KROWI_LIB_CURRENT
+    return self.CurrentLibrary
 end
 
 function lib:NewSubmodule(subName, subVersion, parentLibrary)
@@ -47,13 +48,12 @@ function lib:NewSubmodule(subName, subVersion, parentLibrary)
     if type(parentLibrary) == 'string' then
         parentLibrary = LibStub(parentLibrary)
     elseif not parentLibrary then
-        parentLibrary = KROWI_LIB_CURRENT
+        parentLibrary = self.CurrentLibrary
     end
 
     local submodule = self:NewLibrary(parentLibrary.Name .. '_' .. subName, subVersion, false)
-    if not submodule then return end
+    if not submodule then return end -- Already loaded and no upgrade needed
 
-    -- Create reference on main library for convenience
     parentLibrary[subName] = submodule
 
     return submodule, parentLibrary

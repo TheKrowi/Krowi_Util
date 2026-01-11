@@ -1,23 +1,27 @@
 --[[
-    Copyright (c) 2026 Krowi
-
-    All Rights Reserved unless otherwise explicitly stated.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+    Copyright (c) 2023 Krowi
+    Licensed under the terms of the LICENSE file in this repository.
 ]]
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Util-2.0", true)
+local lib = KROWI_LIBMAN:GetCurrentLibrary(true)
 if not lib and not lib.L then return end
 
-local l = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-2.0")
-lib.L["Requires a reload"] = l["Requires a reload"]:SetColorOrange()
+local L = lib.L
 
-lib.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Util-2.0")
+L['General'] = GENERAL
+L['Info'] = INFO
+L['Version'] = GAME_VERSION_LABEL
+L['Sources'] = SOURCES
+L['Icon'] = EMBLEM_SYMBOL
+L['Minimap'] = MINIMAP_LABEL
+L['Game Menu'] = MAINMENU_BUTTON
+L['Interface'] = UIOPTIONS_MENU
+L['AddOns'] = ADDONS
+L['Options'] = GAMEOPTIONS_MENU
+
+local l = lib.Localization.GetLocale(lib)
+L["Requires a reload"] = l["Requires a reload"]:SetColorOrange()
+
+lib.L = lib.Localization.GetLocale(lib)
