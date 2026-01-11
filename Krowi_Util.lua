@@ -5,10 +5,10 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Util-2', 0, true, false)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Util-2', 0, true)
 if not lib then	return end
 
-KROWI_LIBMAN:SetUtilLibrary(lib)
+KROWI_LIBMAN:SetUtil(lib)
 
 local version = (GetBuildInfo())
 local majorVersion = string.match(version, '(%d+)%.(%d+)%.(%d+)(%w?)')
