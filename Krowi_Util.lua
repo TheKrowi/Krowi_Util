@@ -5,7 +5,7 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Util-2', 0)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Util-2', 0, true, false)
 if not lib then	return end
 
 KROWI_LIBMAN:SetUtilLibrary(lib)

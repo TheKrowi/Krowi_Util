@@ -5,7 +5,7 @@
 
 ---@diagnostic disable: undefined-global
 
-local function NewLibrary(self, libName, libVersion, setCurrent)
+local function NewLibrary(self, libName, libVersion, setCurrent, setUtil)
     assert(type(libName) == 'string', 'Bad argument #2 to \'InitLibrary\' (string expected)')
     libVersion = assert(tonumber(string.match(libVersion, '%d+')), 'Bad argument #3 to \'InitLibrary\' (version must either be a number or contain a number)')
 
@@ -18,6 +18,11 @@ local function NewLibrary(self, libName, libVersion, setCurrent)
     if setCurrent ~= false then
         self = self or lib
         self.CurrentLibrary = lib
+    end
+
+    if setUtil then
+        self = self or lib
+        lib.Util = self:GetUtil()
     end
 
     return lib
