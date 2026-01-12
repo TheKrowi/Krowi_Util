@@ -13,7 +13,8 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-12 17-58-33 ]] --
+-- [[ Exported at 2026-01-12 19-39-26 ]] --
+L["Author"] = "作者"
 L["Build"] = "版本"
 L["Checked"] = "启用"
 L["Credits"] = "鸣谢"
@@ -42,4 +43,3 @@ L["Special thanks"] = "特别感谢"
 L["Unchecked"] = "停用"
 L["Wago"] = true
 L["Wago Desc"] = "显示 {addonName} 的 {wago} 页面链接。"
-L["Author"] = "作者"

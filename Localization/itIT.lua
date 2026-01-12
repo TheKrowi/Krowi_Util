@@ -13,7 +13,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-12 17-58-31 ]] --
+-- [[ Exported at 2026-01-12 19-40-14 ]] --
 L["Author"] = "Autore"
 L["Build"] = "Versione"
 L["Checked"] = "Selezionato"
@@ -27,4 +27,4 @@ L["Right click"] = "Click destro"
 L["Show minimap icon"] = "Mostra l'icona nella minimappa"
 L["Show minimap icon Desc"] = "Mostra / nascondi il pulsante opzioni nella minimappa."
 L["Unchecked"] = "Non selezionato"
-L["Wago"] = "Wago"
+L["Wago"] = true

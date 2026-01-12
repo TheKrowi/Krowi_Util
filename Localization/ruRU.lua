@@ -13,7 +13,7 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-12 17-58-31 ]] --
+-- [[ Exported at 2026-01-12 19-40-14 ]] --
 L["Author"] = "Автор"
 L["Build"] = "Сборка"
 L["Checked"] = "Выделено"

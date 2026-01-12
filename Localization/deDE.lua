@@ -13,7 +13,8 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-12 17-58-31 ]] --
+-- [[ Exported at 2026-01-12 19-38-58 ]] --
+L["Author"] = "Autor"
 L["Build"] = "Version"
 L["Checked"] = "Aktivert"
 L["Credits"] = true
@@ -42,4 +43,3 @@ L["Special thanks"] = "Besonderer Dank"
 L["Unchecked"] = "Nicht aktiviert"
 L["Wago"] = true
 L["Wago Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {wago}."
-L["Author"] = "Autor"

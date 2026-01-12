@@ -1,21 +1,11 @@
-### Added (2.0)
-- **New LibMan Architecture**: Complete refactor using KROWI_LIBMAN library management system for better modularity and reusability
-- **LocalizationHelper Module**: Simplified localization handling with automatic locale detection and initialization
-- **MetaData Module**: Centralized addon metadata management with CurseForge and Wago link generation
-- **Strings Module**: New string utilities including variable replacement, reload notices, and default value text helpers
-- Complete localization exports for all supported languages
+### Added
+- **New LibMan Architecture**: Complete refactor to use KROWI_LIBMAN library management system
+- **LocalizationHelper Module**: New module providing improved localization handling with `InitLocalization`, `NewDefaultLocale`, `NewLocale`, and `GetLocale` functions
 
-### Changed (2.0)
-- **Breaking**: Migrated to LibMan-based architecture (requires compatible addons)
-- Code style standardized across entire codebase (removed semicolons, single quotes)
-- Localization system completely rewritten for better maintainability
-- Options system updated to work with new architecture
-
-### Added (1.0.14)
-- Support for WoW 12.0.0 (Midnight)
-
-### Changed (1.0.14)
-- Improved localization handling
-
-### TBC Classic (1.0.14)
-- Support added
+### Changed
+- **Breaking**: Migrated from standalone library to LibMan-based submodule architecture
+- **Code Style**: Standardized code style across all files:
+  - Removed semicolons
+  - Changed string literals from double quotes to single quotes
+  - Improved code consistency and readability
+- **License Headers**: Updated all file headers to reference LICENSE file instead of inline license text
