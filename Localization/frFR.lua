@@ -42,3 +42,4 @@ L["Special thanks"] = "Remerciements spéciaux"
 L["Unchecked"] = "Non coché"
 L["Wago"] = true
 L["Wago Desc"] = "Ouvre une fenêtre avec un lien vers la page {addonName} {wago}."
+L["Author"] = "Auteur"

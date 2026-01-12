@@ -42,3 +42,4 @@ L["Special thanks"] = true
 L["Unchecked"] = true
 L["Wago"] = true
 L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page."
+L["Author"] = true

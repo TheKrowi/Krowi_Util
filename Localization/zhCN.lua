@@ -42,3 +42,4 @@ L["Special thanks"] = "特别感谢"
 L["Unchecked"] = "停用"
 L["Wago"] = true
 L["Wago Desc"] = "显示 {addonName} 的 {wago} 页面链接。"
+L["Author"] = "作者"
