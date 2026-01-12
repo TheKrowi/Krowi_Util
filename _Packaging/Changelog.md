@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.0 - 2026-01-12
+### Added
+- **New LibMan Architecture**: Complete refactor to use KROWI_LIBMAN library management system
+- **LocalizationHelper Module**: New module providing improved localization handling with `InitLocalization`, `NewDefaultLocale`, `NewLocale`, and `GetLocale` functions
+
+### Changed
+- **Breaking**: Migrated from standalone library to LibMan-based submodule architecture
+- **Code Style**: Standardized code style across all files:
+  - Removed semicolons
+  - Changed string literals from double quotes to single quotes
+  - Improved code consistency and readability
+- **License Headers**: Updated all file headers to reference LICENSE file instead of inline license text
+
 ## 1.0.14 - 2026-01-10
 ### Added
 - Support for WoW 12.0.0 (Midnight)

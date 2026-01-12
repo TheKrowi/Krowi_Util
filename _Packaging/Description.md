@@ -1,55 +1,105 @@
-A comprehensive utility library for World of Warcraft addon development, providing reusable functions for string manipulation, table operations, color management, metadata handling, and more.
+A comprehensive modular utility library for World of Warcraft addon development, built on the KROWI_LIBMAN architecture. Provides reusable modules for string manipulation, table operations, color management, metadata handling, localization, and more.
 
 ## Features
 
-### Core Utilities (`Krowi_Util-1.0`)
-- **Version Detection**: Automatic detection of WoW version (Mainline, Classic variants)
+### LibMan Architecture
+- **Modular Design**: Clean submodule system for better code organization
+- **Dependency Management**: Automatic version tracking and compatibility checks
+- **Shared Library Support**: Seamless integration with other Krowi libraries
+
+### Core Utilities Module
+- **Version Detection**: Automatic detection of WoW version (Mainline, Midnight, Classic variants)
 - **Table Operations**: Merge, copy, search, and manipulate tables
 - **Nested Key Operations**: Safe access to deeply nested table values
 - **Delayed Execution**: Timer-based function delays
 - **Type Checking**: Complete set of type validation functions
-- **LibStub Support**: Standard LibStub library structure for dependency management
 
-### String Utilities (`Krowi_Strings-1.0`)
+### String Utilities Module
 - **Variable Replacement**: Template-based string formatting with `{varName}` syntax
 - **UI Helpers**: Reload requirement and default value text generation
-- **String Extensions**: Methods added directly to the string type
+- **String Extensions**: Methods added directly to the string type with `K_` prefix
 
-### Color Management (`Krowi_Colors-1.0`)
+### Color Management Module
 - **Color Utilities**: Apply and remove color codes from text
 - **RGB/Hex Conversion**: Convert between RGB percentages and hex values
 - **Predefined Colors**: Quest difficulty colors (Green, Grey, Red, Orange, Yellow)
 - **Item Quality Colors**: Poor, Common, Uncommon, Rare, Epic
 - **Dynamic String Methods**: Auto-generated `SetColor*` methods for convenient styling
 
-### Metadata Management (`Krowi_MetaData-1.0`)
-- **Addon Information Extraction**: Parse TOC file metadata
-- **Custom Field Support**: Discord, CurseForge, Wago, WoWInterface links
-- **Version Tracking**: Automatic build and version concatenation
+### Metadata Management Module
+- **Addon Information Extraction**: Parse TOC file metadata with caching
+- **Link Generation**: Automatic CurseForge and Wago link formatting
+- **Build Version Tracking**: Combined build and version information
 
-### Credits System (`Krowi_Credits-1.0`)
+### Localization Helper Module
+- **Simplified Setup**: Easy initialization with `InitLocalization`
+- **Automatic Detection**: Smart locale detection and fallback handling
+- **AceLocale Integration**: Built on top of AceLocale-3.0 with improved API
+- **Multi-Language Support**: English, German, French, Chinese (Simplified)
+
+### Credits System Module
 - **Contributor Recognition**: Formatted lists for special thanks, donations, and localizations
 - **Class Coloring**: Automatic character class color formatting
 
 ### Additional Features
 - **Minimap Icon Support** (`Icon.lua`): LibDBIcon integration with tooltip and click handling
 - **Options Framework** (`Options/`): Profile management and AceConfig integration
-- **Localization Support**: English, German, French, Chinese (Simplified)
+- **Complete Localization**: Comprehensive translations for all supported languages
 
 ## Usage Examples
 
-### Basic Setup
+### Basic Setup (2.0)
 ```lua
-local util = LibStub("Krowi_Util-1.0")
+-- Access via LibMan
+local util = KROWI_LIBMAN:GetLibrary('Krowi_Util_2')
+
+-- Or access submodules directly
+local strings = KROWI_LIBMAN:GetLibrary('Krowi_Util_2'):GetSubmodule('Strings')
+
+-- Or via parent
+local util = KROWI_LIBMAN:GetLibrary('Krowi_Util_2')
+local strings = util.Strings
+```
+
+### Legacy LibStub Support (1.x)
+```lua
+-- Still supported for backward compatibility
+local util = LibStub("Krowi_Util_2")
 ```
 
 ### String Variable Replacement
 ```lua
+-- Using module method
 local text = util.Strings.ReplaceVars("Hello {name}, you have {count} items", {
     name = "Player",
     count = 5
 })
 -- Result: "Hello Player, you have 5 items"
+
+-- Using string extension
+local text = ("Hello {name}"):K_ReplaceVars({name = "World"})
+-- Result: "Hello World"
+```
+
+### Localization Setup (New in 2.0)
+```lua
+-- Initialize localization for your addon
+util.LocalizationHelper.InitLocalization(MyAddon, "MyAddonName")
+
+-- Create default locale (enUS)
+local L = MyAddon.Localization.NewDefaultLocale()
+L["Hello"] = "Hello"
+L["Goodbye"] = "Goodbye"
+
+-- Create other locales
+local L = MyAddon.Localization.NewLocale('deDE')
+if L then
+    L["Hello"] = "Hallo"
+    L["Goodbye"] = "Auf Wiedersehen"
+end
+
+-- Use localized strings
+local greeting = MyAddon.Localization.GetLocale()["Hello"]
 ```
 
 ### Color Management
@@ -87,11 +137,12 @@ elseif util.IsMistsClassic then
 end
 ```
 
-### Metadata Extraction
+### Metadata Extraction (Enhanced in 2.0)
 ```lua
 local metadata = util.Metadata.GetAddOnMetadata("YourAddon")
 print(metadata.Title, metadata.Version, metadata.Author)
-print(metadata.DiscordInviteLink, metadata.CurseForge)
+print(metadata.CurseForge, metadata.Wago) -- Auto-formatted links
+print(metadata.BuildVersion) -- Combined build and version
 ```
 
 ## API Reference
@@ -126,13 +177,25 @@ print(metadata.DiscordInviteLink, metadata.CurseForge)
 | `IsThread` | `value` | boolean | Checks if value is thread |
 | `IsUserData` | `value` | boolean | Checks if value is userdata |
 
-### String Utility Functions
+### String Utility Functions (Enhanced in 2.0)
 
 | Function | Parameters | Returns | Description |
 |----------|------------|---------|-------------|
 | `Strings.ReplaceVars` | `str, vars` | string | Replaces `{key}` placeholders with values from vars table |
+| `string.K_ReplaceVars` | `str, vars` | string | String extension version of ReplaceVars |
 | `Strings.AddReloadRequired` | `str` | string | Appends reload requirement message |
+| `string.K_AddReloadRequired` | `str` | string | String extension version of AddReloadRequired |
 | `Strings.AddDefaultValueText` | `str, startTbl, valuePath, values` | string | Appends default value information |
+| `string.K_AddDefaultValueText` | `str, startTbl, valuePath, values` | string | String extension version of AddDefaultValueText |
+
+### Localization Helper Functions (New in 2.0)
+
+| Function | Parameters | Returns | Description |
+|----------|------------|---------|-------------|
+| `LocalizationHelper.InitLocalization` | `app, appName` | - | Initializes localization system for an addon |
+| `app.Localization.NewDefaultLocale` | `addMore` | table | Creates/retrieves enUS locale table |
+| `app.Localization.NewLocale` | `locale, addMore` | table | Creates/retrieves specific locale table |
+| `app.Localization.GetLocale` | - | table | Gets the active locale table |
 
 ### Color Functions
 
@@ -161,15 +224,17 @@ All colors automatically extend the string type:
 -- etc. for all color constants
 ```
 
-### Metadata Functions
+### Metadata Functions (Enhanced in 2.0)
 
 | Function | Parameters | Returns | Description |
 |----------|------------|---------|-------------|
-| `Metadata.GetAddOnMetadata` | `addonName` | table | Returns comprehensive addon metadata |
+| `Metadata.GetAddOnMetadata` | `addonName` | table | Returns comprehensive cached addon metadata |
 
 **Returned Metadata Fields:**
-- `AddonName`, `Title`, `Prefix`, `Acronym`, `Build`, `Version`, `BuildVersion`, `Author`, `Icon`
-- `DiscordInviteLink`, `DiscordServerName`, `CurseForge`, `Wago`, `WoWInterface`
+- `AddonName`, `Title`, `Prefix`, `Acronym`
+- `Build`, `Version`, `BuildVersion` (combined build + version)
+- `Author`, `Icon`
+- `CurseForge` (auto-formatted link), `Wago` (auto-formatted link)
 
 ### Credits Functions
 
@@ -184,24 +249,30 @@ All colors automatically extend the string type:
 | Property | Type | Description |
 |----------|------|-------------|
 | `IsMistsClassic` | boolean | True if running Mists of Pandaria Classic |
+| `IsTBCClassic` | boolean | True if running The Burning Crusade Classic |
 | `IsClassicWithAchievements` | boolean | True if Classic version with achievements |
 | `IsTheWarWithin` | boolean | True if running The War Within expansion |
 | `IsMidnight` | boolean | True if running Midnight expansion |
-| `IsMainline` | boolean | True if running retail (The War Within or Midnight) |
+| `IsMainline` | boolean | True if running retail (uses WOW_PROJECT_MAINLINE) |
 
 ## Use Cases
-- Dynamic text generation for tooltips, messages, and UI elements
-- Safe nested table navigation without nil reference errors
-- Consistent color styling matching WoW's quest and item quality colors
-- Version-specific feature implementation
-- Reusable utility functions for common operations
-- Addon metadata extraction and display
-- Profile management and options configuration
+- **Modular Addon Development**: Build addons using clean, reusable modules
+- **Dynamic Text Generation**: Create tooltips, messages, and UI elements with template strings
+- **Safe Data Access**: Navigate nested tables without nil reference errors
+- **Consistent Styling**: Apply WoW-standard quest and item quality colors
+- **Multi-Version Support**: Implement version-specific features across all WoW versions
+- **Localization**: Easy setup and management of multi-language support
+- **Metadata Management**: Centralized addon information with automatic link generation
+- **Profile Configuration**: Built-in profile management and options framework
 
 ## Requirements
-- LibStub
-- AceLocale-3.0
+- KROWI_LIBMAN (included)
+- LibStub (included)
+- AceLocale-3.0 (included)
+- CallbackHandler-1.0 (included)
 - AceConfig-3.0 (for options)
 - AceConfigDialog-3.0 (for options UI)
+- AceDB-3.0 (for options database)
+- AceDBOptions-3.0 (for profile options)
 - LibDBIcon-1.0 (for minimap icon)
-- LibDataBroker-1.1 (for minimap icon)
+- LibDataBroker-1.1 (included, for minimap icon)
