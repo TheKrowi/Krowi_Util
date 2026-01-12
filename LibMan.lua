@@ -25,7 +25,7 @@ local function NewLibrary(self, libName, libVersion, setCurrent, setUtil, initLo
     end
 
     if initLocalization ~= false then
-        lib.Util.LocalizationHelper.InitLocalization(lib)
+        self:GetUtil().LocalizationHelper.InitLocalization(lib)
     end
     return lib
 end
@@ -75,4 +75,27 @@ function lib:GetUtil(silent)
         error('No current library is set.', 2)
     end
     return self.Util
+end
+
+function lib:NewAddon(addonName, addon, setCurrent, setUtil, setMetaData, initLocalization)
+    self.Addons = self.Addons or {}
+    if self.Addons[addonName] then return end
+
+    self.Addons[addonName] = self.Addons[addonName] or addon
+
+    if setCurrent ~= false then
+        self.CurrentAddon = addon
+    end
+
+    if setUtil ~= false then
+        addon.Util = self:GetUtil()
+    end
+
+    if setMetaData ~= false then
+        addon.Metadata = self:GetUtil().Metadata.GetAddOnMetadata(addonName)
+    end
+
+    if initLocalization ~= false then
+        addon.Util.LocalizationHelper.InitLocalization(addon)
+    end
 end

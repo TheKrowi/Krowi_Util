@@ -10,9 +10,7 @@ if not lib then	return end
 
 local L = lib.Localization.NewLocale('frFR')
 if not L then return end
-lib.L = L
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-util/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-01-10 11-32-45 ]] --

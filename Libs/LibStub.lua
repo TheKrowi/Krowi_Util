@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local libStubMajor, libStubMinor = 'LibStub', 2
 local LibStub = _G[libStubMajor]
 if LibStub and LibStub.minor >= libStubMinor then return end

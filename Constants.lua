@@ -9,3 +9,8 @@ local sub = KROWI_LIBMAN:NewSubmodule('Constants', 0)
 if not sub then	return end
 
 sub.AceLocaleName = 'AceLocale-3.0'
+
+sub.DiscordInviteLink = 'https://discord.gg/mdBFQJYeQZ'
+sub.DiscordServerName = 'Krowi\'s Addons'
+sub.CurseForgeLinkBase = 'https://www.curseforge.com/wow/addons/'
+sub.WagoIoLinkBase = 'https://addons.wago.io/addons/'

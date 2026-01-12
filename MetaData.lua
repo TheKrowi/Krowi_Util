@@ -5,10 +5,14 @@
 
 ---@diagnostic disable: undefined-global
 
-local sub = KROWI_LIBMAN:NewSubmodule('Metadata', 0)
-if not sub then	return end
+local sub, parent = KROWI_LIBMAN:NewSubmodule('Metadata', 0)
+if not sub or not parent then return end
 
+local getBuildInfo = GetBuildInfo
+local getAddOnMetadata = C_AddOns.GetAddOnMetadata
 local buildVersionFormat = '%s.%s'
+local curseForgeLinkFormat = parent.Constants.CurseForgeLinkBase .. '%s'
+local wagoLinkFormat = parent.Constants.WagoIoLinkBase .. '%s'
 local metadataCache = {}
 
 function sub.GetAddOnMetadata(addonName)
@@ -16,8 +20,7 @@ function sub.GetAddOnMetadata(addonName)
         return metadataCache[addonName]
     end
 
-    local getAddOnMetadata = C_AddOns.GetAddOnMetadata
-    local build = GetBuildInfo()
+    local build = getBuildInfo()
     local version = getAddOnMetadata(addonName, 'Version')
 
     metadataCache[addonName] = {
@@ -30,11 +33,8 @@ function sub.GetAddOnMetadata(addonName)
         BuildVersion = string.format(buildVersionFormat, build, version),
         Author = getAddOnMetadata(addonName, 'Author'),
         Icon = getAddOnMetadata(addonName, 'IconTexture'),
-        DiscordInviteLink = getAddOnMetadata(addonName, 'X-Discord-Invite-Link'),
-        DiscordServerName = getAddOnMetadata(addonName, 'X-Discord-Server-Name'),
-        CurseForge = getAddOnMetadata(addonName, 'X-CurseForge'),
-        Wago = getAddOnMetadata(addonName, 'X-Wago'),
-        WoWInterface = getAddOnMetadata(addonName, 'X-WoWInterface')
+        CurseForge = string.format(curseForgeLinkFormat, getAddOnMetadata(addonName, 'X-Slug')),
+        Wago = string.format(wagoLinkFormat, getAddOnMetadata(addonName, 'X-Slug'))
     }
 
     return metadataCache[addonName]

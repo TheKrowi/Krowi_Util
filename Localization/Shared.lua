@@ -3,6 +3,8 @@
     Licensed under the terms of the LICENSE file in this repository.
 ]]
 
+-- [[ https://legacy.curseforge.com/wow/addons/krowi-util/localization ]] --
+
 ---@diagnostic disable: undefined-global
 
 local lib = KROWI_LIBMAN:GetCurrentLibrary(true)

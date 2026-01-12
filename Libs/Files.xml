@@ -5,6 +5,8 @@
 
 <Ui>
 	<Script file='LibStub.lua'/>
+    <Script file="CallbackHandler.lua" />
+    <Script file="LibDataBroker.lua" />
     
-    <Include file="AceLocale-3.0\AceLocale-3.0.xml" />
+    <Script file="AceLocale-3.0.lua" />
 </Ui>
