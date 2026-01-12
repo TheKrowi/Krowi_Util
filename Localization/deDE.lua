@@ -13,33 +13,32 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-10 11-32-45 ]] --
+-- [[ Exported at 2026-01-12 17-58-31 ]] --
+L["Build"] = "Version"
 L["Checked"] = "Aktivert"
+L["Credits"] = true
+L["CurseForge"] = true
+L["CurseForge Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {curseForge}."
 L["Default value"] = "Vorgabewert (Standard)"
+L["Deselect All"] = "Alle abwählen"
+L["Discord"] = true
+L["Discord Desc"] = "Öffnet ein Popup-Fenster mit einem Link zum {serverName} Discord-Server. Hier können Sie Kommentare, Berichte, Bemerkungen, Ideen und alles andere posten."
+L["Donations"] = "Spenden"
+L["Hide"] = "Ausblenden"
+L["Left click"] = "Links-Klick"
+L["Left-Click"] = "Links-Klick"
 L["Loaded"] = "Geladen"
 L["Loaded Desc"] = "Zeigt an, ob das mit dem Plugin verbundene Addon geladen ist oder nicht."
+L["Localizations"] = "Lokalisierungen"
+L["Plugins"] = true
 L["Profiles"] = "Profile"
 L["Requires a reload"] = "Funktioniert erst nach einem /reload."
-L["Unchecked"] = "Nicht aktiviert"
-L["Wago Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {wago}."
-L["Credits"] = "Credits"
-L["Special thanks"] = "Besonderer Dank"
-L["Donations"] = "Spenden"
-L["Localizations"] = "Lokalisierungen"
-L["Author"] = "Autor"
-L["Build"] = "Version"
-L["CurseForge"] = "CurseForge"
-L["CurseForge Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {curseForge}."
-L["Discord"] = "Discord"
-L["Discord Desc"] = "Öffnet ein Popup-Fenster mit einem Link zum {serverName} Discord-Server. Hier können Sie Kommentare, Berichte, Bemerkungen, Ideen und alles andere posten."
-L["Wago"] = "Wago"
-L["Left click"] = "Links-Klick"
 L["Right click"] = "Rechts-Klick"
-L["Plugins"] = true
+L["Right-Click"] = "Rechts-Klick"
+L["Select All"] = "Alle auswählen"
 L["Show minimap icon"] = "Zeige Minimap Icon"
 L["Show minimap icon Desc"] = "Zeige / Verstecke das Minimap Icon."
-L["Deselect All"] = "Alle abwählen"
-L["Select All"] = "Alle auswählen"
-L["Left-Click"] = "Links-Klick"
-L["Right-Click"] = "Rechts-Klick"
-L["Hide"] = "Ausblenden"
+L["Special thanks"] = "Besonderer Dank"
+L["Unchecked"] = "Nicht aktiviert"
+L["Wago"] = true
+L["Wago Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {wago}."

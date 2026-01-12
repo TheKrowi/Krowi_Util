@@ -9,7 +9,7 @@
 ## Author: Krowi
 ## Notes: A comprehensive utility library providing reusable functions for string manipulation, table operations, color management, and metadata handling
 ## X-Slug: krowi-util
-## X-Curse-Project-ID: 1399543
+## X-CurseForge-ID: 1399543
 ## X-Wago-ID: aNDmxr6o
 
 Krowi_Util.xml
