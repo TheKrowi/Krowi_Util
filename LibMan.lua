@@ -5,22 +5,30 @@
 
 ---@diagnostic disable: undefined-global
 
+if KROWI_LIBMAN then return end
+
+local function SetCurrentIfRequested(self, options, library)
+    if options.SetCurrent then
+        self.CurrentLibrary = library
+    end
+end
+
 local function NewLibrary(self, libName, libVersion, options)
     assert(type(libName) == 'string', 'Bad argument #2 to \'InitLibrary\' (string expected)')
     libVersion = assert(tonumber(string.match(libVersion, '%d+')), 'Bad argument #3 to \'InitLibrary\' (version must either be a number or contain a number)')
 
-    local lib = LibStub:NewLibrary(libName, libVersion)
-    if not lib then return end -- Already loaded and no upgrade needed
-
     options = options or {}
+
+    local lib = LibStub:NewLibrary(libName, libVersion)
+    if not lib then -- Library already exists, but we may need to set it as current
+        SetCurrentIfRequested(self, options, LibStub(libName))
+        return
+    end
 
     lib.Name = libName
     lib.Version = libVersion
 
-    self = self or lib
-    if options.SetCurrent then
-        self.CurrentLibrary = lib
-    end
+    SetCurrentIfRequested(self, options, lib)
 
     if options.SetUtil then
         lib.Util = self:GetUtil()
