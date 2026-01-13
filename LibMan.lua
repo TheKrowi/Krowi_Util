@@ -5,32 +5,34 @@
 
 ---@diagnostic disable: undefined-global
 
-local function NewLibrary(self, libName, libVersion, setCurrent, setUtil, initLocalization)
+local function NewLibrary(self, libName, libVersion, options)
     assert(type(libName) == 'string', 'Bad argument #2 to \'InitLibrary\' (string expected)')
     libVersion = assert(tonumber(string.match(libVersion, '%d+')), 'Bad argument #3 to \'InitLibrary\' (version must either be a number or contain a number)')
 
     local lib = LibStub:NewLibrary(libName, libVersion)
     if not lib then return end -- Already loaded and no upgrade needed
 
+    options = options or {}
+
     lib.Name = libName
     lib.Version = libVersion
 
     self = self or lib
-    if setCurrent ~= false then
+    if options.SetCurrent then
         self.CurrentLibrary = lib
     end
 
-    if setUtil ~= false then
+    if options.SetUtil then
         lib.Util = self:GetUtil()
     end
 
-    if initLocalization ~= false then
+    if options.InitLocalization then
         self:GetUtil().LocalizationHelper.InitLocalization(lib)
     end
     return lib
 end
 
-local lib = NewLibrary(nil, 'Krowi_LibMan', 0, false, false, false)
+local lib = NewLibrary(nil, 'Krowi_LibMan', 0)
 if not lib then return end
 
 KROWI_LIBMAN = lib
@@ -58,7 +60,7 @@ function lib:NewSubmodule(subName, subVersion, parentLibrary)
         parentLibrary = self.CurrentLibrary
     end
 
-    local submodule = self:NewLibrary(parentLibrary.Name .. '_' .. subName, subVersion, false, false, false)
+    local submodule = self:NewLibrary(parentLibrary.Name .. '_' .. subName, subVersion)
     if not submodule then return end -- Already loaded and no upgrade needed
 
     parentLibrary[subName] = submodule
@@ -77,25 +79,31 @@ function lib:GetUtil(silent)
     return self.Util
 end
 
-function lib:NewAddon(addonName, addon, setCurrent, setUtil, setMetaData, initLocalization)
+function lib:NewAddon(addonName, addon, options)
     self.Addons = self.Addons or {}
     if self.Addons[addonName] then return end
 
+    options = options or {}
+
     self.Addons[addonName] = self.Addons[addonName] or addon
 
-    if setCurrent ~= false then
+    if options.SetCurrent then
         self.CurrentAddon = addon
     end
 
-    if setUtil ~= false then
+    if options.SetUtil then
         addon.Util = self:GetUtil()
     end
 
-    if setMetaData ~= false then
+    if options.SetMenuBuilder then
+        addon.MenuBuilder = self:GetLibrary('Krowi_Menu_2').MenuBuilder
+    end
+
+    if options.SetMetaData then
         addon.Metadata = self:GetUtil().Metadata.GetAddOnMetadata(addonName)
     end
 
-    if initLocalization ~= false then
+    if options.InitLocalization then
         addon.Util.LocalizationHelper.InitLocalization(addon)
     end
 end
