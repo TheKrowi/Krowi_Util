@@ -107,6 +107,10 @@ function lib:NewAddon(addonName, addon, options)
         addon.MenuBuilder = self:GetLibrary('Krowi_Menu_2').MenuBuilder
     end
 
+    if options.SetBroker then
+        addon.Broker = self:GetLibrary('Krowi_Brokers_2')
+    end
+
     if options.SetMetaData then
         addon.Metadata = self:GetUtil().Metadata.GetAddOnMetadata(addonName)
     end
