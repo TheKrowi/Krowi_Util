@@ -92,8 +92,8 @@ function options:Open()
         return
     end
 
-    Settings.GetCategory(name).expanded = true
-    Settings.OpenToCategory(name, true)
+    local categoryId = LibStub("AceConfigDialog-3.0").BlizOptionsIDMap[name]
+    Settings.OpenToCategory(categoryId, name)
 end
 
 string[addon.Metadata.Acronym .. '_InjectAddonName'] = function(str)

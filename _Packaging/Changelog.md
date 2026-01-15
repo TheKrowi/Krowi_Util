@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 2.0 - 2026-01-12
+## 2.1 - 2026-01-15
+### Changed
+- Updated the Settings opening process to work with 12.0
+
+## 2.0 - 2026-01-14
 ### Added
 - **New LibMan Architecture**: Complete refactor to use KROWI_LIBMAN library management system
 - **LocalizationHelper Module**: New module providing improved localization handling with `InitLocalization`, `NewDefaultLocale`, `NewLocale`, and `GetLocale` functions
