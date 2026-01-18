@@ -1,2 +1,2 @@
-### Changed (2.1)
-- Updated the Settings opening process to work with 12.0
+### Changed (2.2)
+- KROWI_LIBMAN:NewAddon can now receive SilentLocalization option

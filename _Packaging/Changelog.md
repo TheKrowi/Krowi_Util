@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.2 - 2026-01-18
+### Changed
+- KROWI_LIBMAN:NewAddon can now receive SilentLocalization option
+
 ## 2.1 - 2026-01-15
 ### Changed
 - Updated the Settings opening process to work with 12.0

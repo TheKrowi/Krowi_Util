@@ -5,7 +5,7 @@
 
 ## Interface: 120000, 110207, 50503, 20505, 11508
 ## Title: Krowi's |cFF1D92C2Util|r
-## Version: 2.1
+## Version: 2.2
 ## Author: Krowi
 ## Notes: A comprehensive utility library providing reusable functions for string manipulation, table operations, color management, and metadata handling
 ## X-Slug: krowi-util
