@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.3 - 2026-06-03
+### Added
+- `lib.IsClassicEra` for WoW Classic Era (version 1.x)
+- `lib.IsBCCClassic` for Burning Crusade Classic (version 2.x)
+
+### Changed
+- Updated supported interfaces: removed 110207 (The War Within), kept 120005 (Midnight), 50503, 20505, 11508
+
 ## 2.2 - 2026-01-18
 ### Changed
 - KROWI_LIBMAN:NewAddon can now receive SilentLocalization option
