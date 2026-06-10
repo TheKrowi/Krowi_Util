@@ -71,7 +71,7 @@ end
 _G[addon.Metadata.Prefix .. '_OnAddonCompartmentEnter'] = function(...) icon:OnAddonCompartmentEnter(...) end
 
 function icon:OnAddonCompartmentLeave()
-    GameTooltip:Hide()
+    securecall(GameTooltip.Hide, GameTooltip)
 end
 ---@diagnostic disable-next-line: redundant-parameter
 _G[addon.Metadata.Prefix .. '_OnAddonCompartmentLeave'] = function(...) icon:OnAddonCompartmentLeave(...) end
