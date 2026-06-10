@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.4 - 2026-06-10
+### Fixed
+- `GameTooltip:Hide()` in `Icon:OnAddonCompartmentLeave` is now called via `securecall` to prevent UI taint (dev note: calling `GameTooltip:Hide()` directly from addon code marks the `GameTooltip` object as tainted; this cascades through `GameTooltip_ClearWidgetSet` → `UpdateWidgetLayout` → `DefaultWidgetLayout` → `LayoutFrame.lua`, producing repeated `attempt to compare a secret number value (execution tainted by ...)` errors that auto-fire every ~20–30 seconds, commonly triggered by hovering map POIs or entering/leaving combat; wrapping in `securecall` keeps the call in a protected context so Blizzard's layout code never sees the taint)
+
 ## 2.3 - 2026-06-03
 ### Added
 - `lib.IsClassicEra` for WoW Classic Era (version 1.x)

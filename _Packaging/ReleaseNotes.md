@@ -1,6 +1,2 @@
-### Added (2.3)
-- `lib.IsClassicEra` for WoW Classic Era (version 1.x)
-- `lib.IsBCCClassic` for Burning Crusade Classic (version 2.x)
-
-### Changed (2.3)
-- Updated supported interfaces: removed 110207 (The War Within), kept 120005 (Midnight), 50503, 20505, 11508
+### Fixed (2.4)
+- `GameTooltip:Hide()` in `Icon:OnAddonCompartmentLeave` is now called via `securecall` to prevent UI taint (dev note: calling `GameTooltip:Hide()` directly from addon code marks the `GameTooltip` object as tainted; this cascades through `GameTooltip_ClearWidgetSet` → `UpdateWidgetLayout` → `DefaultWidgetLayout` → `LayoutFrame.lua`, producing repeated `attempt to compare a secret number value (execution tainted by ...)` errors that auto-fire every ~20–30 seconds, commonly triggered by hovering map POIs or entering/leaving combat; wrapping in `securecall` keeps the call in a protected context so Blizzard's layout code never sees the taint)
