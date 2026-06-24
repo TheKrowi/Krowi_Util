@@ -3,9 +3,9 @@
 #    Licensed under the terms of the LICENSE file in this repository.
 #
 
-## Interface: 120005, 50503, 20505, 11508
+## Interface: 120007, 50504, 20505, 11508
 ## Title: Krowi's |cFF1D92C2Util|r
-## Version: 2.4
+## Version: 2.5
 ## Author: Krowi
 ## Notes: A comprehensive utility library providing reusable functions for string manipulation, table operations, color management, and metadata handling
 ## X-Slug: krowi-util

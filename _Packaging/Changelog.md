@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.5 - 2026-06-24
+### Changed
+- Replaced `GameTooltip` with a dedicated `Krowi_Tooltip` frame (a `GameTooltipTemplate`-derived frame declared in `Krowi_Util.xml`) for the addon compartment icon tooltip; this avoids UI taint by never touching the global `GameTooltip` from addon code, removing the need for the `securecall` wrapper on hide
+- Updated supported interfaces: `120005 → 120007` (Midnight patch), `50503 → 50504` (Mists Classic patch)
+
 ## 2.4 - 2026-06-10
 ### Fixed
 - `GameTooltip:Hide()` in `Icon:OnAddonCompartmentLeave` is now called via `securecall` to prevent UI taint (dev note: calling `GameTooltip:Hide()` directly from addon code marks the `GameTooltip` object as tainted; this cascades through `GameTooltip_ClearWidgetSet` → `UpdateWidgetLayout` → `DefaultWidgetLayout` → `LayoutFrame.lua`, producing repeated `attempt to compare a secret number value (execution tainted by ...)` errors that auto-fire every ~20–30 seconds, commonly triggered by hovering map POIs or entering/leaving combat; wrapping in `securecall` keeps the call in a protected context so Blizzard's layout code never sees the taint)
