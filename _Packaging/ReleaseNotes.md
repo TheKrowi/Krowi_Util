@@ -1,3 +1,2 @@
-### Changed (2.5)
-- Replaced `GameTooltip` with a dedicated `Krowi_Tooltip` frame (a `GameTooltipTemplate`-derived frame declared in `Krowi_Util.xml`) for the addon compartment icon tooltip; this avoids UI taint by never touching the global `GameTooltip` from addon code, removing the need for the `securecall` wrapper on hide
-- Updated supported interfaces: `120005 → 120007` (Midnight patch), `50503 → 50504` (Mists Classic patch)
+### Added (2.6)
+- Version was missing from translations

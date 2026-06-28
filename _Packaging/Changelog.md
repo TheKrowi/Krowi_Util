@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.6 - 2026-06-28
+### Added
+- Version was missing from translations
+
 ## 2.5 - 2026-06-24
 ### Changed
 - Replaced `GameTooltip` with a dedicated `Krowi_Tooltip` frame (a `GameTooltipTemplate`-derived frame declared in `Krowi_Util.xml`) for the addon compartment icon tooltip; this avoids UI taint by never touching the global `GameTooltip` from addon code, removing the need for the `securecall` wrapper on hide
