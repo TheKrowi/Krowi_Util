@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - `IsWrathClassic` and `IsCataClassic` are back, and `IsClassicWithAchievements` includes them again, as before the Midnight update of November 2025. Since then, addons on the Wrath (38002) client read nil for both and took their non-Classic branches
 - Library version 3 → 4, so this copy replaces an older embedded one
+- Options open through the settings panel on every client that has one, Wrath Classic included; the old Interface Options path only runs where the client has no settings panel
 
 ## 2.6 - 2026-06-28
 ### Added
