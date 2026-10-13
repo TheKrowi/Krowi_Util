@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.7
+### Fixed
+- `IsWrathClassic` and `IsCataClassic` are back, and `IsClassicWithAchievements` includes them again, as before the Midnight update of November 2025. Since then, addons on the Wrath (38002) client read nil for both and took their non-Classic branches
+- Library version 3 → 4, so this copy replaces an older embedded one
+
 ## 2.6 - 2026-06-28
 ### Added
 - Version was missing from translations
