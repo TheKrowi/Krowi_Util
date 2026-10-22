@@ -130,8 +130,12 @@ util.DelayFunction("myDelay", 2, function(msg) print(msg) end, "Hello after 2 se
 
 ### Version Detection
 ```lua
+if util.IsModern then
+    -- Retail's interface: frames, templates and menus as on Retail (Retail and WoW Forever)
+end
+
 if util.IsMainline then
-    -- Retail-specific code (The War Within, Midnight)
+    -- Retail-specific content (The War Within, Midnight)
 elseif util.IsMistsClassic then
     -- Mists Classic-specific code
 end

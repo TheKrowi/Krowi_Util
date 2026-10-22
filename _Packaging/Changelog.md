@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Updated supported interfaces: added `16001` (WoW Forever)
+- `Options/Options.lua` gives the options pages Retail's width wherever `IsModern` is true, so also on WoW Forever
 
 ## 2.7 - 2026-10-13
 ### Fixed
