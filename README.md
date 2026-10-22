@@ -1,4 +1,4 @@
-![Retail](https://img.shields.io/badge/Retail-12.1.5%20%7C%2012.1.0-008833?style=for-the-badge) ![Mists](https://img.shields.io/badge/Mists-5.5.4-28ae7e?style=for-the-badge) ![Titan](https://img.shields.io/badge/Titan-3.80.2-5d6d7e?style=for-the-badge) ![TBC](https://img.shields.io/badge/TBC-2.5.6-62c907?style=for-the-badge) ![Classic](https://img.shields.io/badge/Classic-1.15.9-c39361?style=for-the-badge)<br>
+![Retail](https://img.shields.io/badge/Retail-12.1.5-008833?style=for-the-badge) ![Mists](https://img.shields.io/badge/Mists-5.5.4-28ae7e?style=for-the-badge) ![Titan](https://img.shields.io/badge/Titan-3.80.2-5d6d7e?style=for-the-badge) ![TBC](https://img.shields.io/badge/TBC-2.5.6-62c907?style=for-the-badge) ![Forever](https://img.shields.io/badge/Forever-1.60.1-e6cc80?style=for-the-badge) ![Classic](https://img.shields.io/badge/Classic-1.15.9-c39361?style=for-the-badge)<br>
 [![CurseForge](https://img.shields.io/badge/curseforge-download-F16436?style=for-the-badge&logo=curseforge&logoColor=white)](https://www.curseforge.com/wow/addons/krowi-util) [![Wago](https://img.shields.io/badge/Wago-Download-c1272d?style=for-the-badge)](https://addons.wago.io/addons/krowi-util)<br>
 [![Discord](https://img.shields.io/badge/discord-join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mdBFQJYeQZ) [![PayPal](https://img.shields.io/badge/paypal-donate-002991.svg?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=9QEDV37APQ6YJ)
 
@@ -134,8 +134,12 @@ util.DelayFunction("myDelay", 2, function(msg) print(msg) end, "Hello after 2 se
 
 ### Version Detection
 ```lua
+if util.IsModern then
+    -- Retail's interface: frames, templates and menus as on Retail (Retail and WoW Forever)
+end
+
 if util.IsMainline then
-    -- Retail-specific code (The War Within, Midnight)
+    -- Retail-specific content (The War Within, Midnight)
 elseif util.IsMistsClassic then
     -- Mists Classic-specific code
 end
@@ -252,12 +256,17 @@ All colors automatically extend the string type:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `IsMistsClassic` | boolean | True if running Mists of Pandaria Classic |
-| `IsTBCClassic` | boolean | True if running The Burning Crusade Classic |
-| `IsClassicWithAchievements` | boolean | True if Classic version with achievements |
-| `IsTheWarWithin` | boolean | True if running The War Within expansion |
-| `IsMidnight` | boolean | True if running Midnight expansion |
-| `IsMainline` | boolean | True if running retail (uses WOW_PROJECT_MAINLINE) |
+| `IsClassicEra` | boolean | True on a 1.x build: Classic Era, and also WoW Forever |
+| `IsBCCClassic` | boolean | True on a 2.x build: The Burning Crusade Classic and Anniversary |
+| `IsWrathClassic` | boolean | True on a 3.x build: Wrath of the Lich King Classic and Titan Reforged |
+| `IsCataClassic` | boolean | True on a 4.x build: Cataclysm Classic |
+| `IsMistsClassic` | boolean | True on a 5.x build: Mists of Pandaria Classic |
+| `IsClassicWithAchievements` | boolean | True on Wrath, Cataclysm or Mists Classic |
+| `IsTheWarWithin` | boolean | True on an 11.x build: The War Within |
+| `IsMidnight` | boolean | True on a 12.x build: Midnight |
+| `IsMainline` | boolean | True on Retail (`WOW_PROJECT_ID == WOW_PROJECT_MAINLINE`) |
+| `IsForever` | boolean | True on WoW Forever (`WOW_PROJECT_ID == WOW_PROJECT_CAMELOT`) |
+| `IsModern` | boolean | True where the game runs Retail's interface: Retail and WoW Forever |
 
 ## Use Cases
 - **Modular Addon Development**: Build addons using clean, reusable modules

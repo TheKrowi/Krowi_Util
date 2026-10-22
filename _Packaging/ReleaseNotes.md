@@ -1,7 +1,8 @@
-### Fixed (2.7)
-- `IsWrathClassic` and `IsCataClassic` are back, and `IsClassicWithAchievements` includes them again, as before the Midnight update of November 2025. Since then, addons on the Wrath (38002) client read nil for both and took their non-Classic branches
-- Library version 3 → 4, so this copy replaces an older embedded one
-- Options open through the settings panel on every client that has one, Wrath Classic included; the old Interface Options path only runs where the client has no settings panel
+### Added (2.8)
+- `IsForever`, true on WoW Forever (16001). `IsClassicEra` stays true there as well, as before, since Forever's build is 1.x
+- `IsModern`, true where the game runs Retail's interface: Retail and WoW Forever
 
-### Changed (2.7)
-- Updated supported interfaces: `120007 → 120105, 120100` (Midnight 12.1.0 and 12.1.5), added `38002` (Wrath Classic), `20505 → 20506` (Burning Crusade Anniversary), `11508 → 11509` (Classic Era)
+### Changed (2.8)
+- Library version 4 → 5, so this copy replaces an older embedded one
+- Updated supported interfaces: `120105, 120100 → 120105` (Midnight 12.1.5; 12.1.0 is no longer live), added `16001` (WoW Forever)
+- `Options/Options.lua` gives the options pages Retail's width wherever `IsModern` is true, so also on WoW Forever

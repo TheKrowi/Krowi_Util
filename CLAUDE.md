@@ -6,7 +6,7 @@ There is no build, lint or test step: the game, through a consumer addon, is the
 
 ## Clients and loading
 
-- One TOC, `Krowi_Util.toc`: `## Interface: 120105, 120100, 50504, 38002, 20506, 16001, 11509`, that is Retail 12.1.5 and 12.1.0, Mists Classic 5.5.4, Titan Reforged 3.80.2, TBC Anniversary 2.5.6, WoW Forever 1.60.1 and Classic Era 1.15.9. No saved variables.
+- One TOC, `Krowi_Util.toc`: `## Interface: 120105, 50504, 38002, 20506, 16001, 11509`, that is Retail 12.1.5, Mists Classic 5.5.4, Titan Reforged 3.80.2, TBC Anniversary 2.5.6, WoW Forever 1.60.1 and Classic Era 1.15.9. No saved variables.
 - Load order is `Krowi_Util.xml`: the `Krowi_Tooltip` frame, `Libs\Files.xml` (LibStub, CallbackHandler-1.0, LibDataBroker-1.1, AceLocale-3.0), `LibMan.lua`, `Krowi_Util.lua`, `Constants.lua`, `Colors.lua`, `Strings.lua`, `Metadata.lua` (the file is `MetaData.lua`), `Credits.lua`, `LocalizationHelper.lua`, then `Localization\Files.xml` (enUS, deDE, frFR, itIT, ruRU, zhCN, `Shared.lua`). At load time Metadata and LocalizationHelper read `Constants`, Colors calls `DeepCopyTable`, and `Shared.lua` calls the `SetColorOrange` that Colors adds.
 - The submodules and locale files attach to `KROWI_LIBMAN:GetCurrentLibrary()`, which `Krowi_Util.lua` sets to `Krowi_Util_2` even when its copy does not upgrade (`LibMan.lua:23-26`). Nothing that sets another current library may run inside that sequence.
 - `Icon.lua` and `Options\*.lua` are not in the XML. They start with `local addonName, addon = ...` and are loaded into a consumer's namespace by the consumer's own TOC or `Files.xml` (see Consumers).
