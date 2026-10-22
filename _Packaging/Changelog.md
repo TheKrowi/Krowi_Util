@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8
+### Added
+- `IsForever`, true on WoW Forever (16001). `IsClassicEra` stays true there as well, as before, since Forever's build is 1.x
+- `IsModern`, true where the game runs Retail's interface: Retail and WoW Forever
+
+### Changed
+- Library version 4 → 5, so this copy replaces an older embedded one
+- Updated supported interfaces: added `16001` (WoW Forever)
+- `Options/Options.lua` gives the options pages Retail's width wherever `IsModern` is true, so also on WoW Forever
+
 ## 2.7 - 2026-10-13
 ### Fixed
 - `IsWrathClassic` and `IsCataClassic` are back, and `IsClassicWithAchievements` includes them again, as before the Midnight update of November 2025. Since then, addons on the Wrath (38002) client read nil for both and took their non-Classic branches
