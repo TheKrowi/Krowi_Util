@@ -6,7 +6,7 @@ There is no build, lint or test step: the game, through a consumer addon, is the
 
 ## Clients and loading
 
-- One TOC, `Krowi_Util.toc`: `## Interface: 120105, 120100, 50504, 38002, 20506, 11509`, that is Retail 12.1.5 and 12.1.0, Mists Classic 5.5.4, Titan Reforged 3.80.2, TBC Anniversary 2.5.6 and Classic Era 1.15.9. No WoW Forever (16001), which Krowi_WorldMapButtons lists. No saved variables.
+- One TOC, `Krowi_Util.toc`: `## Interface: 120105, 120100, 50504, 38002, 20506, 16001, 11509`, that is Retail 12.1.5 and 12.1.0, Mists Classic 5.5.4, Titan Reforged 3.80.2, TBC Anniversary 2.5.6, WoW Forever 1.60.1 and Classic Era 1.15.9. No saved variables.
 - Load order is `Krowi_Util.xml`: the `Krowi_Tooltip` frame, `Libs\Files.xml` (LibStub, CallbackHandler-1.0, LibDataBroker-1.1, AceLocale-3.0), `LibMan.lua`, `Krowi_Util.lua`, `Constants.lua`, `Colors.lua`, `Strings.lua`, `Metadata.lua` (the file is `MetaData.lua`), `Credits.lua`, `LocalizationHelper.lua`, then `Localization\Files.xml` (enUS, deDE, frFR, itIT, ruRU, zhCN, `Shared.lua`). At load time Metadata and LocalizationHelper read `Constants`, Colors calls `DeepCopyTable`, and `Shared.lua` calls the `SetColorOrange` that Colors adds.
 - The submodules and locale files attach to `KROWI_LIBMAN:GetCurrentLibrary()`, which `Krowi_Util.lua` sets to `Krowi_Util_2` even when its copy does not upgrade (`LibMan.lua:23-26`). Nothing that sets another current library may run inside that sequence.
 - `Icon.lua` and `Options\*.lua` are not in the XML. They start with `local addonName, addon = ...` and are loaded into a consumer's namespace by the consumer's own TOC or `Files.xml` (see Consumers).
@@ -17,7 +17,7 @@ Every embedded copy runs the whole XML, and LibStub keeps the highest minor per 
 
 | File | Registered as | When the file changes |
 |---|---|---|
-| `Krowi_Util.lua` | `Krowi_Util_2`, minor 4 (`Krowi_Util.lua:8`) | bump that minor |
+| `Krowi_Util.lua` | `Krowi_Util_2`, minor 5 (`Krowi_Util.lua:8`) | bump that minor |
 | `Constants.lua`, `Colors.lua`, `Strings.lua`, `MetaData.lua`, `Credits.lua` | `Krowi_Util_2_<Name>`, minor 0 (`NewSubmodule` on line 8) | bump that file's minor |
 | `LocalizationHelper.lua` | `Krowi_Util_2_LocalizationHelper`, minor 1 (line 8) | bump that file's minor |
 | `LibMan.lua` | global `KROWI_LIBMAN`, LibStub `Krowi_LibMan` minor 0 | cannot be upgraded, see below |
@@ -27,14 +27,14 @@ Every embedded copy runs the whole XML, and LibStub keeps the highest minor per 
 
 - The minors are independent: a `Krowi_Util_2` bump re-runs only `Krowi_Util.lua`, a submodule bump only that file. Bump every one whose file changed, in the same release.
 - An upgrade reuses the same table: the newer copy redefines its functions and fields on it and everything else stays. There are no `oldminor` handlers yet.
-- History: `Krowi_Util_2` was 0 at 2.0 and went to 1, 2 and 3 in 2.1 to 2.3 and to 4 in 2.7; LocalizationHelper went from 0 to 1 in 2.2; the other submodules are 0 and unchanged since 2.0. The changelog names the bump ("Library version 3 → 4").
+- History: `Krowi_Util_2` was 0 at 2.0 and went to 1, 2 and 3 in 2.1 to 2.3, to 4 in 2.7 and to 5 in 2.8; LocalizationHelper went from 0 to 1 in 2.2; the other submodules are 0 and unchanged since 2.0. The changelog names the bump ("Library version 3 → 4").
 - `LibMan.lua` starts with `if KROWI_LIBMAN then return end` (line 8), so the first copy that loads keeps LibMan for the whole session and no later copy's LibMan runs. Do not add LibMan behaviour that a consumer relies on; put it in `Krowi_Util.lua` or a submodule.
 - Never remove or rename a public name: a consumer reading it gets nil without an error. 6ee1198 (2025-11-22) dropped `IsWrathClassic` and `IsCataClassic`, and 2.7 restored them. Krowi_AchievementFilter's `util-flags` lint reads the `lib.IsX =` and `function lib.IsX(` lines here, so keep flags in that form.
 - Before a release, check every file in `git diff --stat <last tag>` against this table.
 
 ## Consumers
 
-- `Libs/Krowi_Util` submodule, pinned version on 2026-10-17: Krowi_AchievementFilter 2.7, Krowi_ExtendedVendorUI 2.6, Krowi_Vendorer 2.2, Krowi_Brokers_Currency, Krowi_Brokers_System and Krowi_Brokers_Time 2.1. Each loads `Krowi_Util.xml` from `Libs/Files.xml` and calls `KROWI_LIBMAN:NewAddon` in `Libs/Libs.lua`.
+- `Libs/Krowi_Util` submodule, pinned version on 2026-10-22: Krowi_AchievementFilter 2.7, Krowi_ExtendedVendorUI 2.7, Krowi_Vendorer 2.2, Krowi_Brokers_Currency, Krowi_Brokers_System and Krowi_Brokers_Time 2.1. Each loads `Krowi_Util.xml` from `Libs/Files.xml` and calls `KROWI_LIBMAN:NewAddon` in `Libs/Libs.lua`.
 - Not on 2.x: Krowi_AchievementFilter_TooltipData (submodule at a 2024 commit, `Krowi_Util-1.0`), Krowi_Brokers_Template (vendored 1.0.13), Krowi_Reminders (untracked copy, repo idle since 2023).
 - Consumer-namespace files: `Icon.lua` from the TOCs of Krowi_AchievementFilter, Krowi_Vendorer and Krowi_ExtendedVendorUI; `Options/Options.lua` and `Options/InjectOptions.lua` from the same three; `Options/Profiles.lua` from Krowi_Vendorer only.
 - Libraries that need it loaded first without embedding it: Krowi_Menu, Krowi_PopupDialog, Krowi_Currency, Krowi_Brokers, Krowi_ProgressBar and Krowi_Tutorials register through `KROWI_LIBMAN`. Krowi_WorldMapButtons and Krowi_Globals do not use it.
@@ -43,7 +43,7 @@ Every embedded copy runs the whole XML, and LibStub keeps the highest minor per 
 ## Architecture
 
 - `LibMan.lua`: `NewLibrary(name, minor, {SetCurrent, SetUtil, InitLocalization})` wraps `LibStub:NewLibrary` and sets `lib.Name` and `lib.Version`. `NewSubmodule(name, minor[, parent])` registers `<parent.Name>_<name>` and sets `parent[name]`; the parent defaults to the current library. `NewAddon(addonName, addon, {SetCurrent, SetUtil, SetMenuBuilder, SetBroker, SetMetaData, InitLocalization, SilentLocalization})` runs once per addon name and sets `addon.Util`, `addon.MenuBuilder` (Krowi_Menu_2), `addon.Broker` (Krowi_Brokers_2), `addon.Metadata` and `addon.Localization`. Also `GetLibrary`, `GetCurrentLibrary`, `SetUtil` and `GetUtil`.
-- `Krowi_Util.lua` (`addon.Util`): client flags from the major of `GetBuildInfo()` (`IsClassicEra`, `IsBCCClassic`, `IsWrathClassic`, `IsCataClassic`, `IsMistsClassic`, `IsTheWarWithin`, `IsMidnight`), `IsClassicWithAchievements` (Wrath, Cata or Mists) and `IsMainline` (`WOW_PROJECT_ID == WOW_PROJECT_MAINLINE`); table helpers, `DelayFunction` (one named `C_Timer` at a time) and the `Is<Type>` checks.
+- `Krowi_Util.lua` (`addon.Util`): client flags from the major of `GetBuildInfo()` (`IsClassicEra`, `IsBCCClassic`, `IsWrathClassic`, `IsCataClassic`, `IsMistsClassic`, `IsTheWarWithin`, `IsMidnight`), `IsClassicWithAchievements` (Wrath, Cata or Mists), `IsMainline` (`WOW_PROJECT_ID == WOW_PROJECT_MAINLINE`), and since 2.8 `IsForever` (`WOW_PROJECT_ID == WOW_PROJECT_CAMELOT`) and `IsModern` (`IsMainline or IsForever`, the clients that run Retail's interface). WoW Forever's build is 1.60, so `IsClassicEra` is true there too: Krowi decided on 2026-10-22 to only add flags and never change an existing one, so code that means Classic Era alone tests `IsForever` first. Table helpers, `DelayFunction` (one named `C_Timer` at a time) and the `Is<Type>` checks.
 - `Constants`: the Discord, CurseForge and Wago links and the AceLocale name. `Credits`: the special thanks, donations and translators lists the addons show. `Metadata.GetAddOnMetadata(name)`: cached TOC fields, including `X-Prefix`, `X-Acronym`, `IconTexture` and the `X-Slug` links.
 - `Colors`: `<Name>RGB` tables (with `.Hex`), `<Name>` format strings, `SetTextColor`, `RemoveColor`, `RGBPrct2HEX`, `UnpackRGB`, and a `string.SetColor<Name>` method per colour. `Strings`: `ReplaceVars` (`{key}` placeholders), `AddReloadRequired` and `AddDefaultValueText`, also as `string.K_ReplaceVars`, `K_AddReloadRequired` and `K_AddDefaultValueText`.
 - `LocalizationHelper.InitLocalization(app, appName, silent)` gives `app.Localization` (`NewDefaultLocale`, `NewLocale`, `GetLocale`) on AceLocale; Krowi_Util calls it on itself (`LocalizationHelper.lua:52`), and `Localization/Shared.lua` sets `Krowi_Util_2.L`.
@@ -76,7 +76,7 @@ Measured on 2026-10-17; match it:
 
 ## Testing in game
 
-- Changes are tested through a consumer, picked by what changed: the client flags and most helpers through Krowi_AchievementFilter (Retail, Mists, Titan) and Krowi_ExtendedVendorUI (Retail, Mists, Anniversary, Era); `Icon.lua` and `Options/` through those two plus Krowi_Vendorer (Retail, the only one that loads `Profiles.lua`); `SetBroker`, `SetMenuBuilder` and Colors through the Krowi_Brokers addons.
+- Changes are tested through a consumer, picked by what changed: the client flags and most helpers through Krowi_AchievementFilter (Retail, Mists, Titan) and Krowi_ExtendedVendorUI (Retail, Mists, Anniversary, Era, Forever); `Icon.lua` and `Options/` through those two plus Krowi_Vendorer (Retail, the only one that loads `Profiles.lua`); `SetBroker`, `SetMenuBuilder` and Colors through the Krowi_Brokers addons.
 - The kit's `Deploy.ps1` run from this repo installs a standalone `AddOns\Krowi_Util`. It replaces an embedded copy only where its minors are higher, and LibMan and the locale strings come from whichever copy loads first, so it does not show what players get. Deploy over the consumer's copy instead, with `-Destination "<client>\Interface\AddOns\<Consumer>\Libs\Krowi_Util"` (preview with `-WhatIf` first); it lasts until that consumer is deployed again. A standalone `AddOns\Krowi_Util` left behind keeps loading; remove it after the check.
 - `Read-GameErrors.ps1` from this repo shows the errors whose message or stack names `Krowi_Util`, including the AceLocale "Missing entry" errors for `Krowi_Util_2`.
 
@@ -96,4 +96,4 @@ Measured on 2026-10-17; match it:
 - `Options/InjectOptions.lua:28` and `:33` add `(1 or amount)`, which is always 1: `amount` is ignored.
 - `Krowi_Util.xml:17` loads `Metadata.lua`; the file is `MetaData.lua` and loads only because the file system ignores case.
 - `Krowi_Util.xml:7` creates a new `Krowi_Tooltip` for every embedded copy; the global points at the last one.
-- `_Packaging/Description.md` (and the README made from it) documents a `GetSubmodule` that does not exist (line 57) and `IsTBCClassic` where the code has `IsBCCClassic` (line 252), leaves out `IsClassicEra`, `IsWrathClassic` and `IsCataClassic`, and lists four languages where six ship.
+- `_Packaging/Description.md` (and the README made from it) documents a `GetSubmodule` that does not exist (line 57) and lists four languages where six ship.

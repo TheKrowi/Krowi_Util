@@ -248,12 +248,17 @@ All colors automatically extend the string type:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `IsMistsClassic` | boolean | True if running Mists of Pandaria Classic |
-| `IsTBCClassic` | boolean | True if running The Burning Crusade Classic |
-| `IsClassicWithAchievements` | boolean | True if Classic version with achievements |
-| `IsTheWarWithin` | boolean | True if running The War Within expansion |
-| `IsMidnight` | boolean | True if running Midnight expansion |
-| `IsMainline` | boolean | True if running retail (uses WOW_PROJECT_MAINLINE) |
+| `IsClassicEra` | boolean | True on a 1.x build: Classic Era, and also WoW Forever |
+| `IsBCCClassic` | boolean | True on a 2.x build: The Burning Crusade Classic and Anniversary |
+| `IsWrathClassic` | boolean | True on a 3.x build: Wrath of the Lich King Classic and Titan Reforged |
+| `IsCataClassic` | boolean | True on a 4.x build: Cataclysm Classic |
+| `IsMistsClassic` | boolean | True on a 5.x build: Mists of Pandaria Classic |
+| `IsClassicWithAchievements` | boolean | True on Wrath, Cataclysm or Mists Classic |
+| `IsTheWarWithin` | boolean | True on an 11.x build: The War Within |
+| `IsMidnight` | boolean | True on a 12.x build: Midnight |
+| `IsMainline` | boolean | True on Retail (`WOW_PROJECT_ID == WOW_PROJECT_MAINLINE`) |
+| `IsForever` | boolean | True on WoW Forever (`WOW_PROJECT_ID == WOW_PROJECT_CAMELOT`) |
+| `IsModern` | boolean | True where the game runs Retail's interface: Retail and WoW Forever |
 
 ## Use Cases
 - **Modular Addon Development**: Build addons using clean, reusable modules
